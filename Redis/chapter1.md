@@ -1,0 +1,389 @@
+# Chapter 1: Redis Fundamentals and Core Concepts
+
+## 1.1 What is Redis and Its Use Cases
+
+### What is Redis?
+
+Redis (Remote Dictionary Server) is an open-source, in-memory, NoSQL data structure store that can function as a database, cache, message broker, and streaming engine. Redis stores all data in the server's main memory (RAM) rather than on disk, enabling ultra-fast read and write operations with sub-millisecond latency.
+
+### Key Characteristics
+
+**In-Memory Storage**: All data resides in RAM, providing 100x faster access compared to disk-based storage. This makes Redis ideal for time-sensitive, real-time applications.
+
+**Persistence Options**: Despite being in-memory, Redis offers optional persistence through RDB snapshots and AOF (Append-Only File) to prevent data loss.
+
+**Single-Threaded**: Redis uses a single-threaded execution model with I/O multiplexing, avoiding context switching and lock overhead while handling thousands of concurrent connections efficiently.
+
+**High Performance**: Achieves hundreds of thousands of operations per second on modern hardware with response times often in microseconds.
+
+### Common Use Cases
+
+**Caching**: Store frequently accessed data to reduce database load and improve application response times. Redis can cache database query results, API responses, and computed values.
+
+**Session Management**: Store user session data with automatic expiration using TTL (Time-To-Live). Perfect for web applications requiring fast session retrieval across multiple servers.
+
+**Real-Time Analytics**: Track website visits, user interactions, and metrics in real-time with minimal latency.
+
+**Message Queues**: Implement job queues and background task processing using Redis Lists and Streams.
+
+**Leaderboards and Ranking**: Use Sorted Sets to maintain real-time leaderboards for gaming applications.
+
+**Rate Limiting**: Implement API rate limiting using counters with automatic expiration.
+
+**Real-Time Notifications**: Build chat applications and notification systems using Pub/Sub messaging.
+
+**Geospatial Data**: Handle location-based queries and radius searches using geospatial indexes.
+
+## 1.2 Redis Data Types
+
+Redis supports multiple rich data structures, each optimized for specific use cases:
+
+### String
+
+The simplest data type storing text or binary data up to 512MB. Strings are binary-safe, meaning they can store any kind of data including images, serialized objects, or JSON.
+
+**Common Operations**: GET, SET, INCR, DECR, APPEND
+
+**Use Cases**: Caching simple values, counters, flags, storing serialized objects
+
+**Example**:
+
+```
+SET user:1001:name "John Doe"
+GET user:1001:name
+INCR page:views
+```
+
+### Hash
+
+Stores field-value pairs within a single key, ideal for representing objects like user profiles. Memory-efficient for storing structured data.
+
+**Common Operations**: HSET, HGET, HMGET, HGETALL, HINCRBY
+
+**Use Cases**: User profiles, product details, configuration settings
+
+**Example**:
+
+```
+HSET user:1001 name "John" email "john@example.com" age 30
+HGET user:1001 name
+HGETALL user:1001
+```
+
+### List
+
+Ordered collections of strings based on insertion order, implemented as linked lists. Support operations at both ends (head and tail).
+
+**Common Operations**: LPUSH, RPUSH, LPOP, RPOP, LRANGE, LLEN
+
+**Use Cases**: Activity feeds, message queues, task lists, recent items
+
+**Example**:
+
+```
+LPUSH tasks "task1"
+RPUSH tasks "task2"
+LRANGE tasks 0 -1
+LPOP tasks
+```
+
+### Set
+
+Unordered collections of unique strings. No duplicates allowed. Provides fast membership testing and set operations.
+
+**Common Operations**: SADD, SMEMBERS, SISMEMBER, SINTER, SUNION, SDIFF
+
+**Use Cases**: Unique visitors tracking, tags, relationships, deduplication
+
+**Example**:
+
+```
+SADD tags:article1 "redis" "database" "nosql"
+SISMEMBER tags:article1 "redis"
+SINTER tags:article1 tags:article2
+```
+
+### Sorted Set (ZSet)
+
+Ordered collections where each member is associated with a score (floating-point value). Members are unique and automatically sorted by score. When scores are equal, members are ordered lexicographically.
+
+**Common Operations**: ZADD, ZRANGE, ZREVRANGE, ZRANK, ZREM, ZINCRBY, ZRANGEBYSCORE
+
+**Use Cases**: Leaderboards, priority queues, time-series data, ranking systems
+
+**Example**:
+
+```
+ZADD leaderboard 100 "player1" 200 "player2" 150 "player3"
+ZRANGE leaderboard 0 -1 WITHSCORES
+ZREVRANGE leaderboard 0 2
+ZRANK leaderboard "player1"
+```
+
+## 1.3 Stream Data Type and Use Cases
+
+### What are Redis Streams?
+
+Redis Streams is an advanced data structure introduced in Redis 5.0 that acts as an append-only log with additional capabilities. It provides persistent, ordered message storage ideal for event sourcing and real-time data processing.
+
+### Key Features
+
+**Unique IDs**: Each entry gets an automatic timestamp-based ID (e.g., 1678456789123-0)
+
+**Consumer Groups**: Multiple consumers can process messages in parallel with guaranteed delivery
+
+**Message History**: Messages persist until explicitly deleted, unlike Pub/Sub where messages are lost if no consumer is listening
+
+**Random Access**: O(1) time complexity for accessing entries by ID
+
+### Use Cases
+
+**Event Sourcing**: Track user actions, clicks, and system events
+
+**IoT Data Processing**: Ingest and process sensor data from devices
+
+**Log Processing**: Collect and analyze application and server logs
+
+**Real-Time Analytics**: Process streaming data for dashboards and metrics
+
+**Message Broker**: Reliable message delivery between distributed services
+
+**Chat Applications**: Build messaging systems with message history
+
+### Basic Commands
+
+```
+XADD mystream * temperature 22.5 humidity 60
+XREAD STREAMS mystream 0
+XRANGE mystream - +
+XLEN mystream
+```
+
+## 1.4 In-Memory Architecture and Performance Characteristics
+
+### Architecture
+
+**Memory-Based Storage**: All data structures are stored in RAM, eliminating disk I/O latency. This is the primary reason for Redis's exceptional speed.
+
+**Single-Threaded Event Loop**: Redis uses a single thread for command execution with I/O multiplexing (epoll, kqueue) to handle multiple client connections concurrently without blocking.
+
+**Lock-Free Design**: No need for locks or mutexes, avoiding synchronization overhead and context switching.
+
+**Optimized Data Structures**: Redis uses highly optimized internal representations (SDS for strings, skip lists for sorted sets, hash tables) that minimize memory footprint and maximize performance.
+
+### Performance Characteristics
+
+**Latency**: Sub-millisecond response times, typically in the range of 0.1-1 milliseconds for most operations
+
+**Throughput**: Can handle 100,000+ operations per second on standard hardware
+
+**Time Complexity**: Most operations are O(1) constant time (GET, SET, HGET, SADD). Some are O(N) like KEYS, SMEMBERS, or O(log N) like sorted set operations.
+
+**Memory Efficiency**: Efficient memory usage through encoding optimizations and data structure selection
+
+### Performance Factors
+
+**Network Latency**: 1 Gbit/s network adds ~200 microseconds, Unix domain sockets add ~30 microseconds
+
+**Pipelining**: Batch multiple commands together to reduce network round trips
+
+**Connection Reuse**: Keep connections long-lived to avoid connection overhead
+
+**Command Selection**: Use optimized commands (MGET/MSET for bulk operations)
+
+## 1.5 Redis vs Traditional Databases vs Memcached
+
+### Redis vs Traditional Databases (SQL/NoSQL)
+
+| Feature          | Redis                                              | Traditional Databases              |
+| ---------------- | -------------------------------------------------- | ---------------------------------- |
+| Storage Location | In-memory (RAM)                                    | Disk-based with caching            |
+| Primary Purpose  | Cache, real-time data store                        | Persistent data storage            |
+| Data Structures  | Rich (String, Hash, List, Set, Sorted Set, Stream) | Tables, documents, columns         |
+| Query Language   | Simple commands                                    | SQL, query languages               |
+| Persistence      | Optional (RDB, AOF)                                | ACID-compliant, durable            |
+| Performance      | Sub-millisecond latency                            | Milliseconds to seconds            |
+| Data Size Limit  | RAM capacity                                       | Disk capacity (much larger)        |
+| Use Case         | High-speed access, caching, sessions               | Long-term storage, complex queries |
+
+### Redis vs Memcached
+
+| Feature           | Redis                                                          | Memcached                              |
+| ----------------- | -------------------------------------------------------------- | -------------------------------------- |
+| Data Structures   | Multiple (String, Hash, List, Set, Sorted Set, Stream, Bitmap) | String and integers only               |
+| Persistence       | RDB snapshots, AOF logging                                     | No built-in persistence                |
+| Replication       | Master-Slave, Multi-Master                                     | No native replication                  |
+| Threading         | Single-threaded                                                | Multi-threaded                         |
+| Memory Management | Reclaims unused memory                                         | Holds allocated memory even when empty |
+| Eviction Policies | Multiple (LRU, LFU, TTL-based)                                 | LRU only                               |
+| Max Key Length    | 512MB (2GB for keys)                                           | 250 bytes                              |
+| Partitioning      | Sharding support (Redis Cluster)                               | No built-in partitioning               |
+| Pub/Sub           | Native support                                                 | No support                             |
+| Scripting         | Lua scripting support                                          | No scripting                           |
+| Use Case          | Complex caching, real-time apps, message broker                | Simple key-value caching               |
+
+### When to Choose Redis
+
+- Need rich data structures beyond simple key-value
+- Require data persistence
+- Need pub/sub messaging or streaming
+- Want replication and high availability
+- Need atomic operations and transactions
+
+### When to Choose Memcached
+
+- Simple key-value caching only
+- Need multi-threaded performance
+- Don't require persistence
+- Simpler setup for basic caching
+
+## 1.6 Key-Value Operations and Key Management
+
+### Key Naming Best Practices
+
+**Use Descriptive Names**: Keys should be human-readable and self-explanatory
+
+**Follow Naming Convention**: Use pattern like `objectType:objectId:field`
+
+```
+user:1001:name
+product:5432:price
+session:abc123:data
+```
+
+**Use Namespaces**: Group related keys using colon separators
+
+```
+tenant1:user:1001
+tenant2:user:1001
+```
+
+**Keep Keys Short**: Each byte saved in key name reduces memory usage, but balance with readability
+
+**Avoid Special Characters**: Stick to alphanumeric characters, colons, hyphens, and underscores
+
+### Key Management Best Practices
+
+**Set Appropriate TTL**: Use expiration for temporary data to prevent memory bloat
+
+```
+SET session:user:1000 "data" EX 3600  // expires in 1 hour
+EXPIRE mykey 300
+```
+
+**Avoid KEYS Command**: Never use `KEYS *` in production as it blocks Redis. Use `SCAN` instead for safe iteration.
+
+**Schedule Heavy Operations**: Perform bulk deletions and updates during low-traffic periods
+
+**Monitor Keyspace Size**: Track total key count using `INFO keyspace`
+
+**Use Lazy Deletion**: Configure `lazyfree-lazy-eviction` and `lazyfree-lazy-expire` for background cleanup
+
+## 1.7 Redis Commands and Common Operations
+
+### Basic Commands
+
+**SET**: Set key to hold a string value
+
+```
+SET key value [EX seconds] [PX milliseconds] [NX|XX]
+SET mykey "value" EX 10  // Set with 10 second expiration
+```
+
+**GET**: Retrieve the value of a key
+
+```
+GET key
+```
+
+**DEL**: Delete one or more keys
+
+```
+DEL key1 key2 key3
+```
+
+**EXISTS**: Check if key exists
+
+```
+EXISTS key
+```
+
+**INCR/DECR**: Increment/decrement integer value atomically
+
+```
+INCR counter
+DECR counter
+INCRBY counter 5
+```
+
+**EXPIRE/TTL**: Set or check expiration time
+
+```
+EXPIRE key 300  // Set 300 second TTL
+TTL key         // Check remaining TTL
+PERSIST key     // Remove expiration
+```
+
+**MGET/MSET**: Get/Set multiple keys in one operation
+
+```
+MSET key1 "value1" key2 "value2"
+MGET key1 key2
+```
+
+### Key Expiration
+
+Redis automatically removes keys when their TTL expires. Expiration is stored as absolute Unix timestamps with millisecond precision (since Redis 2.6).
+
+**Expiration Accuracy**: 0-1 millisecond error since Redis 2.6
+
+**Passive Expiration**: Keys are deleted when accessed after expiration
+
+**Active Expiration**: Redis periodically scans and deletes expired keys in background
+
+## 1.8 Binary-Safe Strings and Encoding
+
+### Binary-Safe Strings
+
+Redis strings are binary-safe, meaning they can contain any kind of data, not just text. You can store:
+
+- Text strings
+- Serialized objects (JSON, Protocol Buffers)
+- Images (JPEG, PNG)
+- Binary data
+- Encrypted data
+
+Unlike traditional string implementations that use null terminators, Redis uses Simple Dynamic Strings (SDS) that store the length explicitly, allowing any byte value including null bytes.
+
+### SDS (Simple Dynamic String) Structure
+
+```
+struct sdshdr {
+    int len;        // Current length
+    int alloc;      // Total allocated size
+    char buf[];     // Actual data (null-terminated for compatibility)
+}
+```
+
+### Encoding Types
+
+Redis optimizes memory usage by using different internal encodings based on value characteristics:
+
+**OBJ_ENCODING_RAW**: Raw binary-safe string stored as-is using SDS
+
+**OBJ_ENCODING_INT**: Direct pointer to number for integer values
+
+**OBJ_ENCODING_EMBSTR**: Embedded string for small strings (< 44 bytes) stored within Redis object
+
+Redis automatically selects the most efficient encoding, and this is transparent to the user. You can check encoding using:
+
+```
+OBJECT ENCODING mykey
+```
+
+### Benefits of Binary-Safe Strings
+
+- No need to base64-encode binary data (saves 30% space and processing)
+- Store any data type directly
+- Faster serialization/deserialization
+- Reduced network bandwidth

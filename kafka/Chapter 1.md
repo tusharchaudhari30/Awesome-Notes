@@ -1,0 +1,235 @@
+# Chapter 1: Foundations and Core Concepts
+
+Kafka is a distributed, append-only event log that powers high-throughput, low-latency, and replayable data streams. This chapter refines the foundations with a clear publish–subscribe mental model, a deeper look at messages and batches with schemas, and end-to-end flows across producers, consumers, brokers, clusters, and even multiple clusters.
+
+## 1.1 Publish–Subscribe Messaging Model
+
+### How pub/sub works in Kafka
+
+- Publishers (producers) write events to a named topic without knowing who will consume them; subscribers (consumers) independently read from that topic at their own pace.
+- Kafka retains published events for a configured time or size window; this enables late-joining consumers, reprocessing, and multiple, independent subscribers to the same stream.
+
+### Fan-out and decoupling
+
+- A single published event can be consumed by many different consumer groups (analytics, monitoring, billing), each maintaining its own offsets and processing logic.
+- Producers and consumers scale independently: add more producers to increase write throughput, add more consumers (and partitions) to increase read parallelism.
+
+## 1.2 Messages, Batches, Schemas, Topics, Partitions, Offsets, Keys
+
+### Messages and batches
+
+- Message (record): consists of `key`, `value`, and optional `headers`; the value is the payload, the key guides partitioning and ordering per key.
+- Batches: producers aggregate multiple messages destined for the same partition into a single network request to improve throughput and compression efficiency.
+
+### Schemas
+
+- Schemas define the structure of message values (and optionally keys). Using a schema registry enables evolution (adding fields, changing types) with compatibility rules and safer inter-team integration.
+- Common encodings: JSON (human-friendly), Avro/Protobuf (compact, schema-aware), or custom binary; choose based on governance and performance needs.
+
+### Topics, partitions, and offsets
+
+- Topic: a named category of events (e.g., `orders`).
+- Partition: a shard of a topic; events are appended to the end of a partition log. More partitions → more parallelism and throughput.
+- Offset: the position of a message within a partition; consumers use offsets as bookmarks to track progress and replay.
+
+### Keys and ordering
+
+- Keys route messages to partitions: same key → same partition → per-key ordering preserved.
+- No key (null) typically spreads load across partitions but sacrifices per-entity ordering.
+
+### Code example: with vs without key
+
+```java
+// Without key -> round-robin-like distribution, no per-entity ordering guarantee
+new ProducerRecord<>("orders", "event-1");
+
+// With key -> stable routing to one partition -> preserves per-key order
+new ProducerRecord<>("orders", "user-42", "event-1");
+```
+
+## 1.3 How Producers and Consumers Work
+
+### Producer workflow
+
+- Serialization: converts key/value objects to bytes using configured serializers.
+- Partitioning: selects target partition (hash of key, or sticky/round-robin with null key, or custom partitioner).
+- Batching and compression: groups messages per partition to reduce network overhead; optional compression reduces bandwidth and storage.
+- Delivery guarantees: `acks` and idempotence control durability and duplicate suppression; retries handle transient failures.
+
+### Consumer workflow
+
+- Subscription: join a topic (often via a consumer group) and receive partition assignments.
+- Fetch and deserialize: poll for new messages, then deserialize bytes into domain objects.
+- Processing and commits: process messages, then commit offsets (manual commit recommended for at-least-once).
+- Rebalance handling: when group membership or topic partitions change, assignments shift; consumers must be resilient and idempotent.
+
+### Minimal producer: Java client
+
+```java
+import org.apache.kafka.clients.producer.*;
+import org.apache.kafka.common.serialization.StringSerializer;
+import java.util.Properties;
+
+public class BasicProducer {
+  public static void main(String[] args) {
+    Properties p = new Properties();
+    p.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+    p.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+    p.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+    // Safer defaults
+    p.put(ProducerConfig.ACKS_CONFIG, "all");
+    p.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, "true");
+    p.put(ProducerConfig.RETRIES_CONFIG, 3);
+    p.put(ProducerConfig.LINGER_MS_CONFIG, 10);
+    p.put(ProducerConfig.BATCH_SIZE_CONFIG, 32_768);
+
+    try (KafkaProducer<String, String> producer = new KafkaProducer<>(p)) {
+      for (int i = 0; i < 3; i++) {
+        ProducerRecord<String, String> rec =
+            new ProducerRecord<>("orders", "user-1", "event-" + i);
+        producer.send(rec, (md, ex) -> {
+          if (ex != null) ex.printStackTrace();
+          else System.out.printf("Sent %s-%d@%d%n", md.topic(), md.partition(), md.offset());
+        });
+      }
+      producer.flush();
+    }
+  }
+}
+```
+
+### Minimal consumer: Java client
+
+```java
+import org.apache.kafka.clients.consumer.*;
+import org.apache.kafka.common.serialization.StringDeserializer;
+import java.time.Duration;
+import java.util.List;
+import java.util.Properties;
+
+public class BasicConsumer {
+  public static void main(String[] args) {
+    Properties p = new Properties();
+    p.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+    p.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+    p.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+    p.put(ConsumerConfig.GROUP_ID_CONFIG, "orders-app");
+    p.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+    p.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "false"); // manual commit
+
+    try (KafkaConsumer<String, String> consumer = new KafkaConsumer<>(p)) {
+      consumer.subscribe(List.of("orders"));
+      while (true) {
+        ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(500));
+        for (ConsumerRecord<String, String> rec : records) {
+          // process (idempotent handler recommended)
+          System.out.printf("Got %s-%d@%d key=%s value=%s%n",
+              rec.topic(), rec.partition(), rec.offset(), rec.key(), rec.value());
+        }
+        consumer.commitSync(); // at-least-once
+      }
+    }
+  }
+}
+```
+
+## 1.4 Brokers, Clusters, and Multiple Clusters
+
+### Brokers and clusters
+
+- Broker: a Kafka server that stores partitions and serves read/write requests.
+- Cluster: a group of brokers working together; partitions are spread across brokers, and each partition has a single leader plus followers for replication and fault tolerance.
+- High availability: if a leader broker fails, a follower takes over leadership to keep the partition available.
+
+### Multiple clusters and why they matter
+
+- Environments: organizations often run separate clusters for dev, staging, and prod to isolate changes and risks.
+- Geography and DR: multi-region or multi-datacenter clusters can reduce latency and provide disaster recovery; cross-cluster replication (e.g., MirrorMaker 2, Cluster Linking) moves topics between clusters.
+- Isolation and tenancy: separate clusters can isolate workloads, costs, and security boundaries across teams or business units.
+
+## 1.5 When to Use Kafka
+
+### Best-fit scenarios
+
+- High-throughput event ingestion, log aggregation, CDC from databases, real-time analytics, and microservices events.
+- Multiple teams need the same data; replayability and per-key ordering are important; producers and consumers scale independently.
+
+## 1.6 Spring for Kafka Quickstart
+
+### Producer with `KafkaTemplate`
+
+```java
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.stereotype.Service;
+
+@Service
+public class OrderProducer {
+  private final KafkaTemplate<String, String> template;
+
+  public OrderProducer(KafkaTemplate<String, String> template) {
+    this.template = template;
+  }
+
+  public void sendOrder(String userId, String payload) {
+    // Key preserves per-user ordering
+    template.send("orders", userId, payload)
+        .whenComplete((md, ex) -> {
+          if (ex != null) ex.printStackTrace();
+          else System.out.printf("Sent %s-%d@%d%n", md.topic(), md.partition(), md.offset());
+        });
+  }
+}
+```
+
+### Consumer with `@KafkaListener`
+
+```java
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.support.Acknowledgment;
+import org.springframework.stereotype.Component;
+
+@Component
+public class OrderListener {
+
+  @KafkaListener(topics = "orders", groupId = "orders-app", concurrency = "3")
+  public void onMessage(String value, Acknowledgment ack) {
+    try {
+      // process (make idempotent)
+      System.out.println("Processing: " + value);
+      ack.acknowledge(); // manual ack -> at-least-once
+    } catch (Exception e) {
+      // let error handler / DLT policy handle failures (configured via container factory)
+      throw e;
+    }
+  }
+}
+```
+
+### Boot config essentials
+
+```java
+// application.yml (snippet)
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      acks: all
+      properties:
+        enable.idempotence: true
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      group-id: orders-app
+      enable-auto-commit: false
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+```
+
+## 1.7 Key Takeaways
+
+### What to emphasize in interviews
+
+- Pub/sub in Kafka is topic-based with durable retention, enabling many independent consumer groups to read and replay the same events.
+- Ordering exists per partition; choose keys to preserve per-entity ordering and size partitions to match parallelism goals.
+- Producers and consumers are decoupled and independently scalable; brokers form clusters for durability and availability; multiple clusters improve isolation, latency, and disaster recovery.
+- Spring for Kafka simplifies producer and consumer code with `KafkaTemplate` and `@KafkaListener`, while boot properties handle configuration.
