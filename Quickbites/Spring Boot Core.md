@@ -2,9 +2,9 @@
 
 ## Table of Contents
 
-1. [Introduction to Spring Boot](#introduction)
-2. [Core Concepts](#core-concepts)
-3. [Dependency Injection & IoC](#dependency-injection)
+1. [Introduction to Spring Boot](#1-introduction-to-spring-boot)
+2. [Core Concepts](#2-core-concepts-core-concepts))
+3. [Dependency Injection & IoC](#3-dependency-injection--ioc-dependency-injection)
 4. [Spring Boot Annotations](#annotations)
 5. [Bean Scopes & Lifecycle](#bean-scopes)
 6. [Configuration & Properties](#configuration)
@@ -25,7 +25,7 @@
 
 ---
 
-## 1. Introduction to Spring Boot {#introduction}
+## 1. Introduction to Spring Boot
 
 ### What is Spring Boot?
 
@@ -98,7 +98,7 @@ DI is a design pattern where objects receive their dependencies from external so
 
 ---
 
-## 3. Dependency Injection & IoC {#dependency-injection}
+## 3. Dependency Injection & IoC
 
 ### Constructor Injection (Best Practice)
 

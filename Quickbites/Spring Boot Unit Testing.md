@@ -4,12 +4,12 @@
 
 1. [Introduction to Testing in Spring Boot](#1introduction-to-testing-in-spring-boot)
 2. [Testing Fundamentals](#2-testing-fundamentals)
-3. [Testing Annotations Overview](#3-testing-annotations)
+3. [Testing Annotations Overview](#3-testing-annotations-overview)
 4. [Mocking with Mockito](#4-mocking-with-mockito)
-5. [REST API Testing with MockMvc](#5-rest-api-testing)
+5. [REST API Testing with MockMvc](#5-rest-api-testing-with-mockmvc)
 6. [Database Testing](#6-database-testing)
-7. [Spring Boot Test Slices](#7-test-slices)
-8. [Advanced Testing Techniques](#8-advanced-techniques)
+7. [Spring Boot Test Slices](#7-spring-boot-test-slices)
+8. [Advanced Testing Techniques](#8-advanced-testing-techniques)
 9. [Best Practices](#9-best-practices)
 10. [Common Pitfalls](#10-common-pitfalls)
 
