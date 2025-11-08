@@ -10,6 +10,7 @@ A systematically curated collection of software engineering and interview prepar
 
 - [Quickbites Cheat Sheets](#quickbites-cheat-sheets)
   - [Docker](./Quickbites/Docker.md)
+  - [SQL](./Quickbites/SQL.md)
   - [Git](./Quickbites/git.md)
   - [Oracle](./Quickbites/Oracle.md)
   - [React JSX](./Quickbites/reactjsx.md)
