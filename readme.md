@@ -26,6 +26,7 @@ A comprehensive collection of software engineering notes, interview preparation 
 Concise, interview-focused cheat sheets for rapid revision. Perfect for last-minute preparation and quick reference.
 
 ### Backend & Java Stack
+
 - **[Spring Boot Core](./Quickbites/springbootcore.md)** - IoC, DI, Annotations, Configuration, Profiles
 - **[Spring Data JPA](./Quickbites/SpringJPA.md)** - Repository patterns, Query methods, Relationships
 - **[Spring REST](./Quickbites/SpringRest.md)** - REST APIs, Exception handling, Validation
@@ -33,19 +34,23 @@ Concise, interview-focused cheat sheets for rapid revision. Perfect for last-min
 - **[Spring Boot Unit Testing](./Quickbites/Spring-boot-unit-test.md)** - JUnit, Mockito, Integration testing
 
 ### Database
+
 - **[SQL Cheat Sheet](./Quickbites/SQL.md)** - Queries, Joins, Aggregations, Window functions
 - **[Oracle](./Quickbites/Oracle.md)** - Oracle-specific features
 
 ### Frontend
+
 - **[React JSX](./Quickbites/reactjsx.md)** - Components, Hooks, State management
 - **[React + TypeScript](./Quickbites/reactts.md)** - Type-safe React development
 - **[TypeScript](./Quickbites/Typescript.md)** - Types, Interfaces, Generics, Advanced patterns
 
 ### DevOps & Tools
+
 - **[Docker](./Quickbites/Docker.md)** - Containers, Images, Docker Compose, Best practices
 - **[Git](./Quickbites/git.md)** - Commands, Workflows, Branching strategies
 
 ### Design & Architecture
+
 - **[Low-Level Design (LLD)](./Quickbites/LLD.md)** - Design patterns, SOLID principles, Code examples
 - **[High-Level Design (HLD)](./Quickbites/HLD.md)** - System design concepts
 
@@ -54,9 +59,11 @@ Concise, interview-focused cheat sheets for rapid revision. Perfect for last-min
 ## ☕ Java
 
 ### Java Definitive Guide
+
 Comprehensive Java fundamentals and advanced concepts:
 
 - **[Fundamental Programming Structure](./Java/Java%20Definative/1.%20Fundamental%20Programming%20Structure.md)**
+
   - Data types, Variables, Operators
   - Control flow, Loops, Arrays
   - Methods and Parameter passing
@@ -66,6 +73,7 @@ Comprehensive Java fundamentals and advanced concepts:
   - Usage examples and best practices
 
 ### Core Java Brain Map
+
 - **[Brain Map](./Java/Brain%20Map.md)** - Visual learning guide covering Java ecosystem
 
 ---
@@ -75,23 +83,27 @@ Comprehensive Java fundamentals and advanced concepts:
 End-to-end Apache Kafka notes covering fundamentals to advanced topics:
 
 ### Core Concepts
-- **[Chapter 1](./kafka/Chapter%201.md)** - Introduction to Kafka, Core concepts
-- **[Chapter 2](./kafka/Chapter%202.md)** - Producers and message sending
-- **[Chapter 3](./kafka/Chapter3.md)** - Consumers and consumer groups
-- **[Chapter 4](./kafka/Chapter4.md)** - Kafka internals
-- **[Chapter 5](./kafka/Chapter5.md)** - Replication and reliability
+
+- **[Kafka Fundamentals](./kafka/Kafka%20Fundamentals.md)** - Introduction to Kafka, Core concepts
+- **[Kafka Producers](./kafka/Kafka%20Producers.md)** - Producers and message sending
+- **[Kafka Consumers](./kafka/Kafka%20Consumers.md)** - Consumers and consumer groups
+- **[Kafka Architecture](./kafka/Kafka%20Architecture.md)** - Kafka internals
+- **[Kafka Reliability](./kafka/Kafka%20Reliability.md)** - Replication and reliability
 
 ### Advanced Topics
-- **[Chapter 6](./kafka/Chapter6.md)** - Building data pipelines
-- **[Chapter 7](./kafka/Chapter7.md)** - Cross-cluster data mirroring
-- **[Chapter 8](./kafka/Chapter8.md)** - Kafka Streams
-- **[Chapter 9](./kafka/Chapter9.md)** - Security
-- **[Chapter 10](./kafka/Chapter10.md)** - Monitoring and management
+
+- **[Data Pipelines](./kafka/Data%20Pipelines.md)** - Building data pipelines
+- **[Cross-Cluster Replication](./kafka/Cross-Cluster%20Replication.md)** - Cross-cluster data mirroring
+- **[Kafka Streams](./kafka/Kafka%20Streams.md)** - Stream processing
+- **[Kafka Security](./kafka/Kafka%20Security.md)** - Security configurations
+- **[Kafka Monitoring](./kafka/Kafka%20Monitoring.md)** - Monitoring and management
 
 ### Spring Boot Integration
+
 - **[Dead Letter Queue with Spring](./kafka/DLQSpring.md)** - Error handling, Retry mechanisms, DLQ patterns
 
 ### Quick Reference
+
 - **[Index](./kafka/Index.md)** - Complete Kafka topics index
 
 ---
@@ -103,18 +115,21 @@ End-to-end Apache Kafka notes covering fundamentals to advanced topics:
 Comprehensive SQL notes from basics to advanced database concepts:
 
 #### Fundamentals
+
 1. **[Relational Model & Architecture](./Database/SQL/1.%20Relational%20Model%20%26%20Architecture.md)**
-2. **[SQL DDL (Data Definition Language)](./Database/SQL/2.%20SQL%20Data%20Definition%20Language%20(%20DDL%20).md)**
+2. **[SQL DDL (Data Definition Language)](<./Database/SQL/2.%20SQL%20Data%20Definition%20Language%20(%20DDL%20).md>)**
 3. **[Keys & Integrity Constraints](./Database/SQL/3.%20Keys%20%26%20Integrity%20Constraints.md)**
-4. **[SQL DML (Data Manipulation Language)](./Database/SQL/4.%20SQL%20Data%20Monipulation%20Language%20(DML).md)**
+4. **[SQL DML (Data Manipulation Language)](<./Database/SQL/4.%20SQL%20Data%20Monipulation%20Language%20(DML).md>)**
 
 #### Query Techniques
+
 5. **[Joins and Set Operations](./Database/SQL/5.%20Joins%20and%20Set%20Operations.md)**
 6. **[Aggregations & Grouping](./Database/SQL/6.%20Aggregations%20%26%20Grouping.md)**
-7. **[Subqueries & Common Table Expressions (CTEs)](./Database/SQL/7.%20Subqueries%20%26%20Common%20Table%20Expressions%20(CTEs).md)**
+7. **[Subqueries & Common Table Expressions (CTEs)](<./Database/SQL/7.%20Subqueries%20%26%20Common%20Table%20Expressions%20(CTEs).md>)**
 8. **[Window Functions & Analytics](./Database/SQL/8.%20Windo%20Functions%20%26%20Analytics.md)**
 
 #### Advanced Concepts
+
 9. **[Normalization & Schema Design](./Database/SQL/9.%20Normalization%20%26%20Schema%20design.md)**
 10. **[Transactions & ACID Properties](./Database/SQL/10.%20Transactions%20%26%20ACID%20Properties.md)**
 11. **[Concurrency Control & Locking](./Database/SQL/11.%20Concurrency%20Control%20%26%20Locking.md)**
@@ -122,6 +137,7 @@ Comprehensive SQL notes from basics to advanced database concepts:
 13. **[Query Execution & Optimization](./Database/SQL/13.%20Query%20Execution%20%26%20Optimization.md)**
 
 #### Database Objects
+
 14. **[Views, Materialized Views & Stored Procedures](./Database/SQL/14.%20Views%20Materialized%20Views%20Stored%20procedures.md)**
 15. **[Triggers & User-defined Functions](./Database/SQL/15.%20Triggers%20%26%20User-defined%20Functions.md)**
 
@@ -134,6 +150,7 @@ Comprehensive SQL notes from basics to advanced database concepts:
 Complete Redis and Spring Data Redis integration guide:
 
 #### Core Redis
+
 1. **[Redis Fundamentals and Core Concepts](./Database/Redis/1.%20Redis%20Fundamentals%20and%20Core%20Concepts.md)**
    - Data structures, Commands, Use cases
 2. **[Redis Data Persistence and High Availability](./Database/Redis/2.%20Redis%20Data%20persistence%20and%20High%20Availability.md)**
@@ -142,12 +159,14 @@ Complete Redis and Spring Data Redis integration guide:
    - Transactions, Pipelining, Pub/Sub, Lua scripting
 
 #### Spring Integration
+
 4. **[Spring Data Redis Integration](./Database/Redis/4.%20Spring%20Data%20Redis%20Integration.md)**
    - Configuration, RedisTemplate, Repository support
 5. **[Spring Boot Caching with Redis](./Database/Redis/5.%20Spring%20Boot%20Caching%20with%20Redis.md)**
    - Cache abstraction, Annotations, Configuration
 
 #### Quick References
+
 - **[Redis Spring for Data](./Database/Redis/Redis%20Spring%20for%20Data.md)**
 - **[Redis & Spring Data Redis - Interview Cheat Sheet](./Database/Redis/Redis%20%26%20Spring%20Data%20Redis%20-%20Interview%20Cheat%20Sheet.md)**
 
@@ -158,10 +177,12 @@ Complete Redis and Spring Data Redis integration guide:
 ## 🚀 How to Use
 
 1. **For Interview Preparation**
+
    - Start with [Quickbites](#-quickbites-cheat-sheets) for rapid revision
    - Deep dive into specific topics using detailed notes
 
 2. **For Learning**
+
    - Follow the structured learning path in each section
    - Use the index files for navigation
 
@@ -174,6 +195,7 @@ Complete Redis and Spring Data Redis integration guide:
 ## 🤝 Contributing
 
 Contributions are welcome! If you'd like to:
+
 - Add new notes or cheat sheets
 - Fix errors or improve existing content
 - Suggest new topics
