@@ -1,5 +1,3 @@
-Now I'll compile a comprehensive Redis and Spring Data Redis cheat sheet with code examples covering all important topics.
-
 # Redis & Spring Data Redis - Interview Cheat Sheet
 
 ## What is Redis?
