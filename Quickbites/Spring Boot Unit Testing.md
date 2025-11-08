@@ -2,7 +2,7 @@
 
 ## Table of Contents
 
-1. [Introduction to Testing in Spring Boot](#1-introduction)
+1. [Introduction to Testing in Spring Boot](#1introduction-to-testing-in-spring-boot)
 2. [Testing Fundamentals](#2-testing-fundamentals)
 3. [Testing Annotations Overview](#3-testing-annotations)
 4. [Mocking with Mockito](#4-mocking-with-mockito)
@@ -15,7 +15,7 @@
 
 ---
 
-## 1. Introduction to Testing in Spring Boot {#1-introduction}
+## 1.Introduction to Testing in Spring Boot
 
 ### Testing Pyramid
 
@@ -45,7 +45,7 @@ This includes:
 
 ---
 
-## 2. Testing Fundamentals {#2-testing-fundamentals}
+## 2. Testing Fundamentals
 
 ### Basic Test Structure
 
@@ -205,7 +205,7 @@ class ParameterizedTestExamples {
 
 ---
 
-## 3. Testing Annotations Overview {#3-testing-annotations}
+## 3. Testing Annotations Overview
 
 ### Comparison of Test Annotations
 
@@ -249,7 +249,7 @@ class MockWebEnvironmentTest {
 
 ---
 
-## 4. Mocking with Mockito {#4-mocking-with-mockito}
+## 4. Mocking with Mockito
 
 ### @Mock vs @MockBean
 
@@ -545,7 +545,7 @@ class SpyBeanTest {
 
 ---
 
-## 5. REST API Testing with MockMvc {#5-rest-api-testing}
+## 5. REST API Testing with MockMvc
 
 ### Basic MockMvc Setup
 
@@ -842,7 +842,7 @@ class AdvancedMockMvcTest {
 
 ---
 
-## 6. Database Testing {#6-database-testing}
+## 6. Database Testing
 
 ### Testing with @DataJpaTest
 
@@ -1081,7 +1081,7 @@ class JdbcUserRepositoryTest {
 
 ---
 
-## 7. Spring Boot Test Slices {#7-test-slices}
+## 7. Spring Boot Test Slices
 
 ### @WebMvcTest - Web Layer Testing
 
@@ -1175,7 +1175,7 @@ class RestClientTestExample {
 
 ---
 
-## 8. Advanced Testing Techniques {#8-advanced-techniques}
+## 8. Advanced Testing Techniques
 
 ### Testing with Profiles
 
@@ -1345,7 +1345,7 @@ class ReflectionTestUtilsExample {
 
 ---
 
-## 9. Best Practices {#9-best-practices}
+## 9. Best Practices
 
 ### 1. Follow AAA Pattern (Arrange-Act-Assert)
 
@@ -1503,7 +1503,7 @@ class GoodTest {
 
 ---
 
-## 10. Common Pitfalls {#10-common-pitfalls}
+## 10. Common Pitfalls
 
 ### 1. Not Using @Transactional Correctly
 
