@@ -3,25 +3,25 @@
 ## Table of Contents
 
 1. [Introduction to Spring Boot](#1-introduction-to-spring-boot)
-2. [Core Concepts](#2-core-concepts-core-concepts))
-3. [Dependency Injection & IoC](#3-dependency-injection--ioc-dependency-injection)
-4. [Spring Boot Annotations](#annotations)
-5. [Bean Scopes & Lifecycle](#bean-scopes)
-6. [Configuration & Properties](#configuration)
-7. [REST API Development](#rest-api)
-8. [Data Access with JPA](#data-access)
-9. [Exception Handling](#exception-handling)
-10. [Validation](#validation)
-11. [Transaction Management](#transactions)
-12. [AOP (Aspect-Oriented Programming)](#aop)
-13. [Profiles & Environment Configuration](#profiles)
-14. [Spring Boot Actuator](#actuator)
-15. [Testing](#testing)
-16. [Security & JWT](#security)
-17. [Caching with Redis](#caching)
-18. [Microservices Architecture](#microservices)
-19. [Advanced Topics](#advanced-topics)
-20. [Best Practices](#best-practices)
+2. [Core Concepts](#2-core-concepts))
+3. [Dependency Injection & IoC](#3-dependency-injection--ioc)
+4. [Spring Boot Annotations](#4-spring-boot-annotations)
+5. [Bean Scopes & Lifecycle](#5-bean-scopes--lifecycle)
+6. [Configuration & Properties](#6-configuration--properties)
+7. [REST API Development](#7-rest-api-development)
+8. [Data Access with JPA](#8-data-access-with-jpa)
+9. [Exception Handling](#9-exception-handling)
+10. [Validation](#10-validation)
+11. [Transaction Management](#11-transaction-management)
+12. [AOP (Aspect-Oriented Programming)](#12-aop-aspect-oriented-programming)
+13. [Profiles & Environment Configuration](#13-profiles--environment-configuration)
+14. [Spring Boot Actuator](#14-spring-boot-actuator)
+15. [Testing](#15-testing)
+16. [Security & JWT](#16-security--jwt)
+17. [Caching with Redis](#17-caching-with-redis)
+18. [Microservices Architecture](#18-microservices-architecture)
+19. [Advanced Topics](#19-advanced-topics)
+20. [Best Practices](#20-best-practices)
 
 ---
 
@@ -69,7 +69,7 @@ public class DemoApplication {
 
 ---
 
-## 2. Core Concepts {#core-concepts}
+## 2. Core Concepts
 
 ### Spring IoC Container
 
@@ -204,7 +204,7 @@ public class MessageProcessor {
 
 ---
 
-## 4. Spring Boot Annotations {#annotations}
+## 4. Spring Boot Annotations
 
 ### Core Annotations
 
@@ -405,7 +405,7 @@ public class ConditionalConfig {
 
 ---
 
-## 5. Bean Scopes & Lifecycle {#bean-scopes}
+## 5. Bean Scopes & Lifecycle
 
 ### Bean Scopes
 
@@ -558,7 +558,7 @@ public class LifecycleBeanAlternative implements InitializingBean, DisposableBea
 
 ---
 
-## 6. Configuration & Properties {#configuration}
+## 6. Configuration & Properties
 
 ### application.properties
 
@@ -693,7 +693,7 @@ public class ConfigComponent {
 
 ---
 
-## 7. REST API Development {#rest-api}
+## 7. REST API Development
 
 ### Complete REST Controller Example
 
@@ -863,7 +863,7 @@ public class UserMapper {
 
 ---
 
-## 8. Data Access with JPA {#data-access}
+## 8. Data Access with JPA
 
 ### JPA Repository
 
@@ -1042,7 +1042,7 @@ public class ProductController {
 
 ---
 
-## 9. Exception Handling {#exception-handling}
+## 9. Exception Handling
 
 ### Custom Exceptions
 
@@ -1211,7 +1211,7 @@ public class GlobalExceptionHandler {
 
 ---
 
-## 10. Validation {#validation}
+## 10. Validation
 
 ### Bean Validation Annotations
 
@@ -1357,7 +1357,7 @@ public class UserController {
 
 ---
 
-## 11. Transaction Management {#transactions}
+## 11. Transaction Management
 
 ### @Transactional Annotation
 
@@ -1537,7 +1537,7 @@ public class ManualTransactionService {
 
 ---
 
-## 12. AOP (Aspect-Oriented Programming) {#aop}
+## 12. AOP (Aspect-Oriented Programming)
 
 ### Enable AOP
 
@@ -1699,7 +1699,7 @@ public class AdminService {
 
 ---
 
-## 13. Profiles & Environment Configuration {#profiles}
+## 13. Profiles & Environment Configuration
 
 ### Profile-Specific Properties
 
@@ -1807,7 +1807,7 @@ app.run(args);
 
 ---
 
-## 14. Spring Boot Actuator {#actuator}
+## 14. Spring Boot Actuator
 
 ### Enable Actuator
 
@@ -1958,7 +1958,7 @@ public class UserService {
 
 ---
 
-## 15. Testing {#testing}
+## 15. Testing
 
 ### Unit Testing with JUnit 5 and Mockito
 
@@ -2239,7 +2239,7 @@ class UserRepositoryTest {
 
 ---
 
-## 16. Security & JWT {#security}
+## 16. Security & JWT
 
 ### Spring Security Dependencies
 
@@ -2484,7 +2484,7 @@ public class UserService {
 
 ---
 
-## 17. Caching with Redis {#caching}
+## 17. Caching with Redis
 
 ### Redis Dependencies
 
@@ -2668,7 +2668,7 @@ public class CacheService {
 
 ---
 
-## 18. Microservices Architecture {#microservices}
+## 18. Microservices Architecture
 
 ### Microservices Core Concepts
 
@@ -2891,7 +2891,7 @@ resilience4j:
 
 ---
 
-## 19. Advanced Topics {#advanced-topics}
+## 19. Advanced Topics
 
 ### Lombok Annotations
 
@@ -3189,7 +3189,7 @@ public class FileController {
 
 ---
 
-## 20. Best Practices {#best-practices}
+## 20. Best Practices
 
 ### Project Structure
 
