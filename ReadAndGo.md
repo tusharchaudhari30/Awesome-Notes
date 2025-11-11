@@ -1,3 +1,200 @@
+# Spring boot kafka
+
+## Kafka Producer
+
+```java
+package com.example.kafkademo;
+
+import org.apache.kafka.clients.producer.ProducerConfig;
+import org.apache.kafka.common.serialization.StringSerializer;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.kafka.core.DefaultKafkaProducerFactory;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.core.ProducerFactory;
+
+import java.util.HashMap;
+import java.util.Map;
+
+@Configuration
+public class KafkaProducerConfig {
+
+    @Value("${spring.kafka.bootstrap-servers}")
+    private String bootstrapServers;
+
+    @Bean
+    public ProducerFactory<String, String> producerFactory() {
+        Map<String, Object> configProps = new HashMap<>();
+        // Specify the Kafka broker address
+        configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
+        // Specify the serializer class for the message keys
+        configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        // Specify the serializer class for the message values
+        configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        // Other potential configurations like retries, batch size, acks, etc.
+        // configProps.put(ProducerConfig.RETRIES_CONFIG, 0);
+
+        return new DefaultKafkaProducerFactory<>(configProps);
+    }
+
+    @Bean
+    public KafkaTemplate<String, String> kafkaTemplate() {
+        return new KafkaTemplate<>(producerFactory());
+    }
+}
+```
+
+## Send methods choice
+
+- **Fire-and-forget:** Maximizes throughput but ignores per-message errors; use only where occasional loss is acceptable and rely on metrics for detection.
+- **Synchronous sends:** Simplify error handling by blocking for results, but can throttle throughput; reserve for low-volume critical flows.
+- **Async with callbacks:** Offers the best balance, enabling non-blocking pipelines with explicit success/failure handling, retries, and DLT routing.
+- **Correlation ID:** Always propagate a correlation ID in headers so callbacks can associate broker results with upstream requests.
+
+```java
+// Fire-and-forget
+template.send("orders", "user-1", "payload");
+
+// Synchronous
+template.send("orders", "user-1", "payload").get();
+
+// Asynchronous with callback
+template.send("orders", "user-1", "payload")
+    .whenComplete((md, ex) -> { /* handle success/failure */ });
+```
+
+## acks (all, 1, 0)
+
+- **Meaning:** Controls how many broker acknowledgments are required before the send is considered successful.
+- **Effects:**
+  - **all:** Wait for leader and all in-sync replicas; highest durability, slightly higher latency.
+  - **1:** Wait for leader only; moderate durability, lower latency.
+  - **0:** Don’t wait; lowest latency, potential silent loss.
+
+## Exactly once
+
+- Enable idempotent producer with <code>acks=all</code> to deduplicate retries and ensure durability.
+- This eliminates duplicates from producer retries, but does not bind consumed offsets; use when only producing (no read-process-write chain).
+
+```yaml
+spring:
+  kafka:
+    producer:
+      acks: all
+      properties:
+        enable.idempotence: true
+```
+
+## Atleast once
+
+- Disable <code>enable-auto-commit</code> so commits occur only after successful handling.
+- Use manual acknowledgment to commit offsets after the work is done; keep handlers idempotent to tolerate replays.
+
+```yaml
+spring:
+  kafka:
+    consumer:
+      group-id: orders-atleast
+      enable-auto-commit: false
+      auto-offset-reset: latest
+```
+
+## Manual commit (at-least-once)
+
+- With <code>enable.auto.commit=false</code>, acknowledge offsets only after processing completes, ensuring replays after crashes rather than data loss; handlers must be idempotent to tolerate duplicates.
+- Use <code>AckMode.MANUAL_IMMEDIATE</code> to commit per-record for minimal replay, or <code>AckMode.BATCH</code> to commit per-batch for higher throughput; align with downstream idempotency guarantees.
+- Pair with cooperative rebalancing to reduce disruption during scaling or deployments while maintaining correctness.
+
+```yaml
+spring:
+  kafka:
+    consumer:
+      enable-auto-commit: false
+```
+
+```java
+import org.springframework.kafka.support.Acknowledgment;
+
+@KafkaListener(topics = "orders", groupId = "orders-manual", containerFactory = "manualAckContainerFactory")
+public void handleManual(String value, Acknowledgment ack) {
+  // process safely (idempotent)
+  ack.acknowledge(); // commit after success
+}
+```
+
+```java
+import org.springframework.context.annotation.Bean;
+import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
+import org.springframework.kafka.core.ConsumerFactory;
+
+@Bean
+public ConcurrentKafkaListenerContainerFactory<String, String> manualAckContainerFactory(
+    ConsumerFactory<String, String> cf) {
+  var factory = new ConcurrentKafkaListenerContainerFactory<String, String>();
+  factory.setConsumerFactory(cf);
+  factory.getContainerProperties().setAckMode(
+      org.springframework.kafka.listener.ContainerProperties.AckMode.MANUAL_IMMEDIATE);
+  return factory;
+}
+```
+
+# Spring For KAFKA DLT
+
+Create a comprehensive error handler with DLQ support:
+
+```java
+@Configuration
+public class KafkaErrorHandlerConfig {
+
+    @Bean
+    public DefaultErrorHandler defaultErrorHandler(
+            KafkaTemplate<String, Object> kafkaTemplate) {
+
+        // Configure Dead Letter Publishing Recoverer
+        DeadLetterPublishingRecoverer recoverer = new DeadLetterPublishingRecoverer(
+            kafkaTemplate,
+            // Route to DLT topic with single partition
+            (record, exception) -> new TopicPartition(
+                record.topic() + ".DLT", 0)
+        );
+
+        // Configure exponential backoff
+        ExponentialBackOffWithMaxRetries backOff =
+            new ExponentialBackOffWithMaxRetries(3);
+        backOff.setInitialInterval(1000L);     // 1 second
+        backOff.setMultiplier(2.0);            // Double each retry
+        backOff.setMaxInterval(10000L);        // Max 10 seconds
+
+        // Create error handler
+        DefaultErrorHandler errorHandler = new DefaultErrorHandler(recoverer, backOff);
+
+        // Add non-retryable exceptions
+        errorHandler.addNotRetryableExceptions(
+            ValidationException.class,
+            MethodArgumentNotValidException.class,
+            DeserializationException.class
+        );
+
+        return errorHandler;
+    }
+
+    @Bean
+    public ConcurrentKafkaListenerContainerFactory<String, Order>
+            kafkaListenerContainerFactory(
+                ConsumerFactory<String, Order> consumerFactory,
+                DefaultErrorHandler errorHandler) {
+
+        ConcurrentKafkaListenerContainerFactory<String, Order> factory =
+            new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(consumerFactory);
+        factory.setCommonErrorHandler(errorHandler);
+
+        return factory;
+    }
+}
+```
+
 # Spring Boot
 
 ## Bean Life Cycle
@@ -371,4 +568,65 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     @Procedure(name = "calculate_employee_bonus")
     Double calculateBonus(@Param("emp_id") Long employeeId);
 }
+```
+
+# SQL
+
+## Keys and Constraints
+
+```sql
+-- Parent Table: Departments (now using a composite PRIMARY KEY)
+CREATE TABLE Departments (
+    DepartmentName VARCHAR(50) NOT NULL,
+    Location VARCHAR(50) NOT NULL DEFAULT 'Head Office',
+    DeptCode VARCHAR(10) UNIQUE, -- UNIQUE constraint
+
+    -- Composite PRIMARY KEY defined at the table level
+    CONSTRAINT pk_department_composite PRIMARY KEY (DepartmentName, Location)
+);
+
+
+-- Child Table: Employees
+CREATE TABLE Employees (
+    EmployeeID INT PRIMARY KEY, -- Primary Key, implicitly NOT NULL and UNIQUE
+    FirstName VARCHAR(50) NOT NULL,
+    LastName VARCHAR(50) NOT NULL,
+    Email VARCHAR(100) UNIQUE,
+    Salary DECIMAL(10, 2) CHECK (Salary >= 30000.00), -- CHECK constraint
+    HireDate DATE DEFAULT CURRENT_DATE, -- DEFAULT constraint
+
+    -- Columns to link to the composite primary key in the Departments table
+    DeptNameRef VARCHAR(50) NOT NULL,
+    DeptLocationRef VARCHAR(50) NOT NULL,
+
+    -- Foreign Key definition referencing the composite key of the Departments table
+    CONSTRAINT fk_department_link
+        FOREIGN KEY (DeptNameRef, DeptLocationRef)
+        REFERENCES Departments(DepartmentName, Location)
+        ON DELETE RESTRICT -- Prevent deletion of a department if employees exist
+);
+```
+
+### CREATE INDEX
+
+Improve query performance on frequently filtered columns.
+
+```sql
+-- Create a nonclustered index on department for faster lookups
+CREATE INDEX idx_employees_department
+ON employees(department);
+```
+
+### ADD/DROP Column
+
+Modify table structures without full recreation.
+
+```sql
+-- Add a phone number column to employees
+ALTER TABLE employees
+ADD phone VARCHAR(15);
+
+-- Remove the phone column if no longer needed
+ALTER TABLE employees
+DROP COLUMN phone;
 ```
