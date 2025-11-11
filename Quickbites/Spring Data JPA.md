@@ -234,6 +234,8 @@ public class Employee {
 
 ### Repository Hierarchy
 
+![alt text](image-3.png)
+
 Spring Data JPA provides several repository interfaces:
 
 1. **Repository<T, ID>** - Marker interface
