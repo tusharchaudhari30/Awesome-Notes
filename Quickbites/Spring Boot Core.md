@@ -3,7 +3,7 @@
 ## Table of Contents
 
 1. [Introduction to Spring Boot](#1-introduction-to-spring-boot)
-2. [Core Concepts](#2-core-concepts))
+2. [Core Concepts](#2-core-concepts)
 3. [Dependency Injection & IoC](#3-dependency-injection--ioc)
 4. [Spring Boot Annotations](#4-spring-boot-annotations)
 5. [Bean Scopes & Lifecycle](#5-bean-scopes--lifecycle)
@@ -1548,6 +1548,8 @@ public class AopConfig {
     // AOP configuration
 }
 ```
+
+![alt text](image-2.png)
 
 ### Aspect Example
 
