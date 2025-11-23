@@ -1,3 +1,8 @@
+## DSA Notes
+
+- **[DSA](./DSA/DSA%20Notes.md)**
+- **[ JAVA DSA ](./DSA/Java%20DSA.md)**
+
 ## Descriptive notes
 
 - **[Apache Kafka Awesome Notes](./kafka/readme.md)**
