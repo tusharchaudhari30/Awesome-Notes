@@ -1,5 +1,51 @@
 ### Core Java Concepts
 
+- [Core Java Concepts](#core-java-concepts)
+  - [JVM, JRE, JDK](#jvm-jre-jdk)
+  - [Data Types](#data-types)
+  - [Control Structures](#control-structures)
+  - [Exception Handling](#exception-handling)
+  - [Collections Framework](#collections-framework)
+  - [Multithreading](#multithreading)
+  - [Object-Oriented Programming (OOP)](#object-oriented-programming-oop)
+    - [Four Pillars](#four-pillars)
+    - [Classes and Objects](#classes-and-objects)
+    - [Inheritance](#inheritance)
+    - [Polymorphism](#polymorphism)
+    - [Interfaces and Abstract Classes](#interfaces-and-abstract-classes)
+- [Functional Programming (java.util.function)](#functional-programming-javautilfunction)
+  - [Core Functional Interfaces](#core-functional-interfaces)
+    - [Custom Functional Interface](#custom-functional-interface)
+    - [Basic Four Operations (Supplier, Consumer, Predicate, Function, BiFunction)](#basic-four-operations-supplier-consumer-predicate-function-bifunction)
+  - [Default Methods & Combinations](#default-methods--combinations)
+- [Streams API](#2-streams-api)
+  - [Stream Creation](#stream-creation)
+  - [Intermediate Operations](#intermediate-operations)
+    - [Filtering & Mapping](#filtering--mapping)
+    - [Sorting & Limiting](#sorting--limiting)
+    - [Debugging (peek)](#debugging-peek)
+  - [Terminal Operations](#terminal-operations)
+    - [Collecting Results](#collecting-results)
+    - [Reduction Operations](#reduction-operations)
+    - [Finding Operations](#finding-operations)
+    - [forEach Operations](#foreach-operations)
+  - [Primitive Streams (IntStream, LongStream, DoubleStream)](#primitive-streams-intstream-longstream-doublestream)
+  - [Collectors Class (basic, statistical, grouping/partitioning, advanced)](#collectors-class-basic-statistical-groupingpartitioning-advanced)
+- [Threading & Concurrency (java.util.concurrent)](#threading--concurrency-javautilconcurrent)
+  - [Core Thread Classes (Thread, Runnable)](#core-thread-classes-thread-runnable)
+  - [Executor Framework (Executor, ExecutorService, ScheduledExecutorService, factory methods)](#executor-framework-executor-executorservice-scheduledexecutorservice-factory-methods)
+  - [Concurrent Collections (thread-safe lists, sets, maps)](#concurrent-collections-thread-safe-lists-sets-maps)
+  - [Blocking Queues & Deques](#blocking-queues--deques)
+  - [Synchronization Utilities (CountDownLatch, CyclicBarrier, Semaphore, Exchanger, Phaser)](#synchronization-utilities-countdownlatch-cyclicbarrier-semaphore-exchanger-phaser)
+  - [Locks & Atomic Variables (ReentrantLock, ReadWriteLock, StampedLock, Atomic classes)](#locks--atomic-variables-reentrantlock-readwritelock-stampedlock-atomic-classes)
+  - [CompletableFuture (creation, chaining, combining)](#completablefuture-creation-chaining-combining)
+- [Collections Framework (Complete)](#collections-framework-complete)
+  - [Core interfaces (Collection, List, Set, Map, Queue, Deque, Navigable/Sorted variants)](#core-interfaces-collection-list-set-map-queue-deque-navigabled-sorted-variants)
+  - [Abstract base classes](#abstract-base-classes)
+  - [Implementations (ArrayList, LinkedList, HashSet, TreeSet, ArrayDeque, PriorityQueue, HashMap, TreeMap, etc.)](#implementations-arraylist-linkedlist-hashset-treeset-arraydeque-priorityqueue-hashmap-treemap-etc)
+  - [Concurrent collections and special-purpose collections](#concurrent-collections-and-special-purpose-collections)
+  - [Quick contrasts & code snippets](#quick-contrasts--code-snippets)
+
 ### JVM, JRE, JDK
 
 - **JVM (Java Virtual Machine)**: Executes Java bytecode.
@@ -90,7 +136,7 @@ public class ExceptionHandlingExample {
 
 ### Collections Framework
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/dc02bc8f-be1a-4238-8d11-8a2d66cc4ced/955abade-ef2e-4bea-af54-8ab458ddd881/Untitled.png)
+![Untitled](./Java%20Definitive/image-4.png)
 
 ### Multithreading
 
@@ -131,6 +177,20 @@ public class ExceptionHandlingExample {
 ## **1. Functional Programming (java.util.function)**
 
 ### **1.1 Core Functional Interfaces**
+
+### ** Custom Functional Interface**
+
+```java
+@FunctionalInterface
+public interface MyFunctionalInterface {
+    void execute(String input);
+}
+
+// Usage
+MyFunctionalInterface func = (input) -> System.out.println("Executing with: " + input);
+
+func.execute("Test Input");
+```
 
 ### **Basic Four Operations**
 

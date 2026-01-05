@@ -15,6 +15,10 @@
 
 Concise, interview-focused cheat sheets for rapid revision. Perfect for last-minute preparation and quick reference.
 
+### Java
+
+- **[Java Brain Map](./Java/Brain%20Map.md)**
+
 ### Backend & Java Stack
 
 - **[Spring Boot Core](./Quickbites/Spring%20Boot%20Core.md)** - IoC, DI, Annotations, Configuration, Profiles
