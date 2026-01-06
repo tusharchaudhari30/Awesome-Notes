@@ -18,6 +18,14 @@ Concise, interview-focused cheat sheets for rapid revision. Perfect for last-min
 ### Java
 
 - **[Java Brain Map](./Java/Brain%20Map.md)**
+  - **[Fundamentals Programmming Structures](./Java/Java%20Definitive/1.%20Fundamental%20Programming%20Structure.md)**
+  - **[OOP Concepts](./Java/Java%20Definitive/2.%20Object%20Oriented%20Programming.md)**
+  - **[Lambda Expression](./Java/Java%20Definitive/3.%20Lambda%20Expression.md)**
+  - **[Exceptions](./Java/Java%20Definitive/4.%20Exceptions.md)**
+  - **[Concurrent Programming](./Java/Java%20Definitive/5.%20Concurrent%20Programming.md)**
+  - **[Collections](./Java/Java%20Definitive/6.%20Collections.md)**
+  - **[Streams API](./Java/Java%20Definitive/7.%20Streams%20API.md)**
+  - **[Functional Interface](./Java/Java%20Definitive/8.%20Functional%20Interface.md)**
 
 ### Backend & Java Stack
 

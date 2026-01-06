@@ -13,10 +13,16 @@
     - [Inheritance](#inheritance)
     - [Polymorphism](#polymorphism)
     - [Interfaces and Abstract Classes](#interfaces-and-abstract-classes)
-- [Functional Programming (java.util.function)](#functional-programming-javautilfunction)
-  - [Core Functional Interfaces](#core-functional-interfaces)
-    - [Custom Functional Interface](#custom-functional-interface)
-    - [Basic Four Operations (Supplier, Consumer, Predicate, Function, BiFunction)](#basic-four-operations-supplier-consumer-predicate-function-bifunction)
+- [Collections Framework (Complete)](#4-collections-framework-complete)
+  - [Core interfaces (Collection, List, Set, Map, Queue, Deque, Navigable/Sorted variants)](#core-interfaces-collection-list-set-map-queue-deque-navigabled-sorted-variants)
+  - [Abstract base classes](#abstract-base-classes)
+  - [Implementations (ArrayList, LinkedList, HashSet, TreeSet, ArrayDeque, PriorityQueue, HashMap, TreeMap, etc.)](#implementations-arraylist-linkedlist-hashset-treeset-arraydeque-priorityqueue-hashmap-treemap-etc)
+  - [Concurrent collections and special-purpose collections](#concurrent-collections-and-special-purpose-collections)
+  - [Quick contrasts & code snippets](#quick-contrasts--code-snippets)
+- [Functional Programming (java.util.function)](#1-functional-programming-javautilfunction)
+  - [Core Functional Interfaces](#11-core-functional-interfaces)
+    - [Custom Functional Interface](#-custom-functional-interface)
+    - [Basic Four Operations (Supplier, Consumer, Predicate, Function, BiFunction)](#basic-four-operations)
   - [Default Methods & Combinations](#default-methods--combinations)
 - [Streams API](#2-streams-api)
   - [Stream Creation](#stream-creation)
@@ -39,12 +45,6 @@
   - [Synchronization Utilities (CountDownLatch, CyclicBarrier, Semaphore, Exchanger, Phaser)](#synchronization-utilities-countdownlatch-cyclicbarrier-semaphore-exchanger-phaser)
   - [Locks & Atomic Variables (ReentrantLock, ReadWriteLock, StampedLock, Atomic classes)](#locks--atomic-variables-reentrantlock-readwritelock-stampedlock-atomic-classes)
   - [CompletableFuture (creation, chaining, combining)](#completablefuture-creation-chaining-combining)
-- [Collections Framework (Complete)](#collections-framework-complete)
-  - [Core interfaces (Collection, List, Set, Map, Queue, Deque, Navigable/Sorted variants)](#core-interfaces-collection-list-set-map-queue-deque-navigabled-sorted-variants)
-  - [Abstract base classes](#abstract-base-classes)
-  - [Implementations (ArrayList, LinkedList, HashSet, TreeSet, ArrayDeque, PriorityQueue, HashMap, TreeMap, etc.)](#implementations-arraylist-linkedlist-hashset-treeset-arraydeque-priorityqueue-hashmap-treemap-etc)
-  - [Concurrent collections and special-purpose collections](#concurrent-collections-and-special-purpose-collections)
-  - [Quick contrasts & code snippets](#quick-contrasts--code-snippets)
 
 ### JVM, JRE, JDK
 
@@ -173,6 +173,209 @@ public class ExceptionHandlingExample {
 
 - **Interface**: Abstract type used to specify a behavior that classes must implement.
 - **Abstract Class**: Class that cannot be instantiated and may contain abstract methods.
+
+## **4. Collections Framework (Complete)**
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/dc02bc8f-be1a-4238-8d11-8a2d66cc4ced/955abade-ef2e-4bea-af54-8ab458ddd881/Untitled.png)
+
+# **Core interfaces**
+
+`Collection<E>` — Root type for groups of elements with basic add/remove/iterate operations.
+
+- `List<E>` — Ordered, index-based sequence allowing duplicates.
+- `Set<E>` — Unordered collection of unique elements.
+- `SortedSet<E>` — Set with elements sorted by natural order or comparator.
+- `NavigableSet<E>` — SortedSet with navigation methods like `lower`, `floor`, `ceiling`, `higher`.
+- `Queue<E>` — FIFO collection supporting enqueue/dequeue semantics.
+- `Deque<E>` — Double-ended queue supporting head and tail operations.
+- `Map<K,V>` — Key–value association with unique keys.
+- `SortedMap<K,V>` — Map sorted by key’s natural order or comparator.
+- `NavigableMap<K,V>` — SortedMap with navigation like `lowerEntry`/`ceilingEntry`.
+
+## **Abstract base classes**
+
+- `AbstractCollection<E>` — Skeletal implementation for collections.
+- `AbstractList<E>` — Skeletal implementation for random-access lists.
+- `AbstractSequentialList<E>` — Skeletal implementation for sequential-access lists.
+- `AbstractSet<E>` — Skeletal implementation for sets.
+- `AbstractQueue<E>` — Skeletal implementation for queues.
+- `AbstractMap<K,V>` — Skeletal implementation for maps.
+
+## **List implementations**
+
+- `ArrayList<E>` — Resizable array list with fast random access.
+- `LinkedList<E>` — Doubly-linked list acting as List, Queue, and Deque.
+- `Vector<E>` — Legacy synchronized resizable array list.
+- `Stack<E>` — Legacy LIFO stack based on Vector.
+
+## **Set implementations**
+
+- `HashSet<E>` — Hash table set with no ordering guarantees.
+- `LinkedHashSet<E>` — HashSet with predictable insertion-order iteration.
+- `TreeSet<E>` — Red-black tree set with sorted order and NavigableSet ops.
+- `EnumSet<E extends Enum<E>>` — High-performance set for enum constants.
+- `CopyOnWriteArraySet<E>` — Thread-safe set optimized for reads.
+
+## **Queue/Deque implementations**
+
+- `ArrayDeque<E>` — Resizable array-based Deque (stack/queue).
+- `PriorityQueue<E>` — Heap-based priority queue ordered by comparator/natural order.
+- `LinkedBlockingQueue<E>` — Blocking FIFO queue with optional capacity bound.
+- `ArrayBlockingQueue<E>` — Bounded blocking FIFO queue backed by array.
+- `PriorityBlockingQueue<E>` — Unbounded blocking priority queue.
+- `DelayQueue<E extends Delayed>` — Time-based retrieval queue for delayed elements.
+- `SynchronousQueue<E>` — Handoff queue with no capacity.
+- `LinkedTransferQueue<E>` — Unbounded transfer queue supporting producer handoff.
+- `ConcurrentLinkedQueue<E>` — Lock-free, unbounded thread-safe queue.
+- `ConcurrentLinkedDeque<E>` — Lock-free, unbounded thread-safe deque.
+
+## **Map implementations**
+
+- `HashMap<K,V>` — Hash table map with amortized O(1) ops, no order.
+- `LinkedHashMap<K,V>` — HashMap with predictable insertion-order or access-order iteration.
+- `TreeMap<K,V>` — Red-black tree map sorted by key with NavigableMap ops.
+- `EnumMap<K extends Enum<K>,V>` — High-performance map for enum keys.
+- `WeakHashMap<K,V>` — Map with keys held weakly, entries GC’d when keys unreachable.
+- `IdentityHashMap<K,V>` — Map using reference identity (==) instead of equals().
+- `Hashtable<K,V>` — Legacy synchronized hash table.
+- `Properties` — Hashtable for string key/value pairs with config/file I/O support.
+
+## **Concurrent maps**
+
+- `ConcurrentHashMap<K,V>` — High-concurrency hash map with non-blocking reads and segmented updates.
+- `ConcurrentSkipListMap<K,V>` — Concurrent, sorted, skip-list based NavigableMap.
+
+## **Concurrent lists/sets**
+
+- `CopyOnWriteArrayList<E>` — Thread-safe list that copies on write, ideal for frequent reads.
+- `ConcurrentSkipListSet<E>` — Concurrent, sorted NavigableSet built on skip list.
+
+## **Special-purpose collections**
+
+- `BitSet` — Compact bit vector for boolean flags and set-like ops on bits.
+- `Vector`/`Stack` — Legacy synchronized list/stack (prefer modern alternatives).
+- `Collections` (utility) — Static factory/algorithms: `sort`, `binarySearch`, `unmodifiable*`, `synchronized*`, `singleton*`, `empty*`.
+- `Arrays` (utility) — Array helpers including `asList`, `sort`, `binarySearch`, and array-to-collection bridges.
+
+---
+
+# **Quick contrasts in code**
+
+```java
+// List vs Set vs Map
+List<String> list = new ArrayList<>();// ordered, allows duplicates
+list.add("a"); list.add("a");// duplicates OK
+
+Set<String> set = new HashSet<>();// unique, no order guarantee
+set.add("a"); set.add("a");// second add ignored
+
+Map<String,Integer> map = new HashMap<>();// key->value, unique keys
+map.put("a", 1); map.put("a", 2);// overwrites value for key "a"
+```
+
+```java
+// HashSet vs LinkedHashSet vs TreeSet
+Set<Integer> hs  = new HashSet<>();// fastest adds, iteration order unspecified
+Set<Integer> lhs = new LinkedHashSet<>();// preserves insertion order
+Set<Integer> ts  = new TreeSet<>();// sorted ascending (or comparator)
+Set<Integer> tsDesc = new TreeSet<>((a, b) -> b.compareTo(a));
+Set<Integer> tsDesc = new TreeSet<>(Comparator.reverseOrder());
+```
+
+```java
+// ArrayList vs LinkedList
+List<Integer> arr = new ArrayList<>();// O(1) random access, amortized O(1) append
+List<Integer> lnk = new LinkedList<>();// O(1) add/remove ends, O(n) random access
+// Remove from middle
+arr.remove(2);  // shifts elements
+lnk.remove(2);  // traverses nodes
+
+// Add/remove at beginning
+arr.add(0, 100); // O(n) shift
+lnk.add(0, 100); // O(1)
+
+// Remove first element
+arr.remove(0); // O(n) shift
+lnk.remove(0); // O(1)
+
+```
+
+```java
+// Queue vs Deque
+Queue<Integer> q = new ArrayDeque<>();// FIFO: offer/poll
+q.offer(1); q.offer(2); q.poll();// 1
+
+Deque<Integer> d = new ArrayDeque<>();// double-ended: addFirst/addLast/removeFirst/removeLast
+d.addFirst(1); d.addLast(2); d.removeLast();// 2
+```
+
+```java
+// PriorityQueue: smallest first by default
+PriorityQueue<Integer> pq = new PriorityQueue<>();
+pq.add(3); pq.add(1); pq.add(2);
+pq.poll();// 1
+
+// Custom comparator: largest first but for object
+
+PriorityQueue<MyObject> pqDesc = new PriorityQueue<>(
+    (a, b) -> Integer.compare(b.getValue(), a.getValue())
+);
+
+```
+
+```java
+// TreeMap/NavigableMap navigation
+NavigableMap<Integer,String> tm = new TreeMap<>();
+tm.put(10,"a"); tm.put(20,"b");
+tm.floorEntry(15).getValue();// "a"
+tm.ceilingKey(15);// 20
+```
+
+```java
+// ConcurrentHashMap vs synchronized Map
+Map<String,Integer> m1 = new ConcurrentHashMap<>();// high concurrency, non-blocking reads
+Map<String,Integer> m2 = Collections.synchronizedMap(new HashMap<>());// coarse-grained locking
+```
+
+```java
+// CopyOnWriteArrayList: safe iteration under concurrent writes, expensive writes
+CopyOnWriteArrayList<String> cow = new CopyOnWriteArrayList<>();
+cow.add("x");
+for (String s : cow) {
+  cow.add("y");// no ConcurrentModificationException
+}
+
+```
+
+```java
+// WeakHashMap: entries auto-removed when keys only weakly reachable
+WeakHashMap<Object, String> whm = new WeakHashMap<>();
+Object key = new Object();
+whm.put(key, "value");
+key = null; System.gc();// entry may disappear later
+```
+
+```java
+// Unmodifiable and immutable views
+List<String> base = new ArrayList<>(List.of("a","b"));
+List<String> ro = Collections.unmodifiableList(base);// throws on write via view
+List<String> imm = List.of("x","y");// truly immutable list
+```
+
+```java
+// EnumSet/EnumMap: compact and fast for enumsenum Day { MON, TUE, WED }
+EnumSet<Day> work = EnumSet.of(Day.MON, Day.TUE);
+EnumMap<Day, Integer> hours = new EnumMap<>(Day.class);
+hours.put(Day.MON, 8);
+
+```
+
+```java
+// Blocking queues for producer-consumer
+BlockingQueue<Integer> bq = new ArrayBlockingQueue<>(10);
+new Thread(() -> { try { bq.put(42); } catch (InterruptedException ignored) {} }).start();
+try { int x = bq.take(); } catch (InterruptedException ignored) {}
+```
 
 ## **1. Functional Programming (java.util.function)**
 
@@ -864,185 +1067,3 @@ CompletableFuture<Object> anyOf = CompletableFuture.anyOf(future1, future2);
 ```
 
 ---
-
-## **4. Collections Framework (Complete)**
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/dc02bc8f-be1a-4238-8d11-8a2d66cc4ced/955abade-ef2e-4bea-af54-8ab458ddd881/Untitled.png)
-
-# **Core interfaces**
-
-`Collection<E>` — Root type for groups of elements with basic add/remove/iterate operations.
-
-- `List<E>` — Ordered, index-based sequence allowing duplicates.
-- `Set<E>` — Unordered collection of unique elements.
-- `SortedSet<E>` — Set with elements sorted by natural order or comparator.
-- `NavigableSet<E>` — SortedSet with navigation methods like `lower`, `floor`, `ceiling`, `higher`.
-- `Queue<E>` — FIFO collection supporting enqueue/dequeue semantics.
-- `Deque<E>` — Double-ended queue supporting head and tail operations.
-- `Map<K,V>` — Key–value association with unique keys.
-- `SortedMap<K,V>` — Map sorted by key’s natural order or comparator.
-- `NavigableMap<K,V>` — SortedMap with navigation like `lowerEntry`/`ceilingEntry`.
-
-## **Abstract base classes**
-
-- `AbstractCollection<E>` — Skeletal implementation for collections.
-- `AbstractList<E>` — Skeletal implementation for random-access lists.
-- `AbstractSequentialList<E>` — Skeletal implementation for sequential-access lists.
-- `AbstractSet<E>` — Skeletal implementation for sets.
-- `AbstractQueue<E>` — Skeletal implementation for queues.
-- `AbstractMap<K,V>` — Skeletal implementation for maps.
-
-## **List implementations**
-
-- `ArrayList<E>` — Resizable array list with fast random access.
-- `LinkedList<E>` — Doubly-linked list acting as List, Queue, and Deque.
-- `Vector<E>` — Legacy synchronized resizable array list.
-- `Stack<E>` — Legacy LIFO stack based on Vector.
-
-## **Set implementations**
-
-- `HashSet<E>` — Hash table set with no ordering guarantees.
-- `LinkedHashSet<E>` — HashSet with predictable insertion-order iteration.
-- `TreeSet<E>` — Red-black tree set with sorted order and NavigableSet ops.
-- `EnumSet<E extends Enum<E>>` — High-performance set for enum constants.
-- `CopyOnWriteArraySet<E>` — Thread-safe set optimized for reads.
-
-## **Queue/Deque implementations**
-
-- `ArrayDeque<E>` — Resizable array-based Deque (stack/queue).
-- `PriorityQueue<E>` — Heap-based priority queue ordered by comparator/natural order.
-- `LinkedBlockingQueue<E>` — Blocking FIFO queue with optional capacity bound.
-- `ArrayBlockingQueue<E>` — Bounded blocking FIFO queue backed by array.
-- `PriorityBlockingQueue<E>` — Unbounded blocking priority queue.
-- `DelayQueue<E extends Delayed>` — Time-based retrieval queue for delayed elements.
-- `SynchronousQueue<E>` — Handoff queue with no capacity.
-- `LinkedTransferQueue<E>` — Unbounded transfer queue supporting producer handoff.
-- `ConcurrentLinkedQueue<E>` — Lock-free, unbounded thread-safe queue.
-- `ConcurrentLinkedDeque<E>` — Lock-free, unbounded thread-safe deque.
-
-## **Map implementations**
-
-- `HashMap<K,V>` — Hash table map with amortized O(1) ops, no order.
-- `LinkedHashMap<K,V>` — HashMap with predictable insertion-order or access-order iteration.
-- `TreeMap<K,V>` — Red-black tree map sorted by key with NavigableMap ops.
-- `EnumMap<K extends Enum<K>,V>` — High-performance map for enum keys.
-- `WeakHashMap<K,V>` — Map with keys held weakly, entries GC’d when keys unreachable.
-- `IdentityHashMap<K,V>` — Map using reference identity (==) instead of equals().
-- `Hashtable<K,V>` — Legacy synchronized hash table.
-- `Properties` — Hashtable for string key/value pairs with config/file I/O support.
-
-## **Concurrent maps**
-
-- `ConcurrentHashMap<K,V>` — High-concurrency hash map with non-blocking reads and segmented updates.
-- `ConcurrentSkipListMap<K,V>` — Concurrent, sorted, skip-list based NavigableMap.
-
-## **Concurrent lists/sets**
-
-- `CopyOnWriteArrayList<E>` — Thread-safe list that copies on write, ideal for frequent reads.
-- `ConcurrentSkipListSet<E>` — Concurrent, sorted NavigableSet built on skip list.
-
-## **Special-purpose collections**
-
-- `BitSet` — Compact bit vector for boolean flags and set-like ops on bits.
-- `Vector`/`Stack` — Legacy synchronized list/stack (prefer modern alternatives).
-- `Collections` (utility) — Static factory/algorithms: `sort`, `binarySearch`, `unmodifiable*`, `synchronized*`, `singleton*`, `empty*`.
-- `Arrays` (utility) — Array helpers including `asList`, `sort`, `binarySearch`, and array-to-collection bridges.
-
----
-
-# **Quick contrasts in code**
-
-```java
-// List vs Set vs Map
-List<String> list = new ArrayList<>();// ordered, allows duplicates
-list.add("a"); list.add("a");// duplicates OK
-
-Set<String> set = new HashSet<>();// unique, no order guarantee
-set.add("a"); set.add("a");// second add ignored
-
-Map<String,Integer> map = new HashMap<>();// key->value, unique keys
-map.put("a", 1); map.put("a", 2);// overwrites value for key "a"
-```
-
-```java
-// HashSet vs LinkedHashSet vs TreeSet
-Set<Integer> hs  = new HashSet<>();// fastest adds, iteration order unspecified
-Set<Integer> lhs = new LinkedHashSet<>();// preserves insertion order
-Set<Integer> ts  = new TreeSet<>();// sorted ascending (or comparator)
-```
-
-```java
-// ArrayList vs LinkedList
-List<Integer> arr = new ArrayList<>();// O(1) random access, amortized O(1) append
-List<Integer> lnk = new LinkedList<>();// O(1) add/remove ends, O(n) random access
-```
-
-```java
-// Queue vs Deque
-Queue<Integer> q = new ArrayDeque<>();// FIFO: offer/poll
-q.offer(1); q.offer(2); q.poll();// 1
-
-Deque<Integer> d = new ArrayDeque<>();// double-ended: addFirst/addLast/removeFirst/removeLast
-d.addFirst(1); d.addLast(2); d.removeLast();// 2
-```
-
-```java
-// PriorityQueue: smallest first by default
-PriorityQueue<Integer> pq = new PriorityQueue<>();
-pq.add(3); pq.add(1); pq.add(2);
-pq.poll();// 1
-```
-
-```java
-// TreeMap/NavigableMap navigation
-NavigableMap<Integer,String> tm = new TreeMap<>();
-tm.put(10,"a"); tm.put(20,"b");
-tm.floorEntry(15).getValue();// "a"
-tm.ceilingKey(15);// 20
-```
-
-```java
-// ConcurrentHashMap vs synchronized Map
-Map<String,Integer> m1 = new ConcurrentHashMap<>();// high concurrency, non-blocking reads
-Map<String,Integer> m2 = Collections.synchronizedMap(new HashMap<>());// coarse-grained locking
-```
-
-```java
-// CopyOnWriteArrayList: safe iteration under concurrent writes, expensive writes
-CopyOnWriteArrayList<String> cow = new CopyOnWriteArrayList<>();
-cow.add("x");
-for (String s : cow) {
-  cow.add("y");// no ConcurrentModificationException
-}
-
-```
-
-```java
-// WeakHashMap: entries auto-removed when keys only weakly reachable
-WeakHashMap<Object, String> whm = new WeakHashMap<>();
-Object key = new Object();
-whm.put(key, "value");
-key = null; System.gc();// entry may disappear later
-```
-
-```java
-// Unmodifiable and immutable views
-List<String> base = new ArrayList<>(List.of("a","b"));
-List<String> ro = Collections.unmodifiableList(base);// throws on write via view
-List<String> imm = List.of("x","y");// truly immutable list
-```
-
-```java
-// EnumSet/EnumMap: compact and fast for enumsenum Day { MON, TUE, WED }
-EnumSet<Day> work = EnumSet.of(Day.MON, Day.TUE);
-EnumMap<Day, Integer> hours = new EnumMap<>(Day.class);
-hours.put(Day.MON, 8);
-
-```
-
-```java
-// Blocking queues for producer-consumer
-BlockingQueue<Integer> bq = new ArrayBlockingQueue<>(10);
-new Thread(() -> { try { bq.put(42); } catch (InterruptedException ignored) {} }).start();
-try { int x = bq.take(); } catch (InterruptedException ignored) {}
-```
