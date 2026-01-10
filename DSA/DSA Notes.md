@@ -573,6 +573,11 @@ class Solution {
         return result;
     }
 }
+/**
+ * [1, 1, 2, 6]
+ * [24,12,4,1]
+*/
+
 ```
 
 **Time Complexity**: O(n)  
