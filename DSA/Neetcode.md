@@ -14,11 +14,35 @@
 
 ## 2. **Two Pointers**
 
-- [Valid Palindrome (125)](https://leetcode.com/problems/valid-palindrome/)
-- [Two Sum II - Input Array Is Sorted (167)](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/)
-- [3Sum (15)](https://leetcode.com/problems/3sum/)
-- [Container With Most Water (11)](https://leetcode.com/problems/container-with-most-water/)
-- [Trapping Rain Water (42)](https://leetcode.com/problems/trapping-rain-water/)
+### ⭐ **Must Do**
+
+- ⭐ [Valid Palindrome (125)](https://leetcode.com/problems/valid-palindrome/)
+- ⭐ [Two Sum II – Input Array Is Sorted (167)](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/)
+- ⭐ [3Sum (15)](https://leetcode.com/problems/3sum/)
+- ⭐ [Container With Most Water (11)](https://leetcode.com/problems/container-with-most-water/)
+- ⭐ [Trapping Rain Water (42)](https://leetcode.com/problems/trapping-rain-water/)
+- ⭐ [Remove Duplicates from Sorted Array (26)](https://leetcode.com/problems/remove-duplicates-from-sorted-array/)
+- ⭐ [Move Zeroes (283)](https://leetcode.com/problems/move-zeroes/)
+- ⭐ [Sort Colors (75)](https://leetcode.com/problems/sort-colors/)
+- ⭐ [Squares of a Sorted Array (977)](https://leetcode.com/problems/squares-of-a-sorted-array/)
+- ⭐ [Is Subsequence (392)](https://leetcode.com/problems/is-subsequence/)
+- ⭐ [Boats to Save People (881)](https://leetcode.com/problems/boats-to-save-people/)
+- ⭐ [Merge Sorted Array (88)](https://leetcode.com/problems/merge-sorted-array/)
+- ⭐ [Palindrome Linked List (234)](https://leetcode.com/problems/palindrome-linked-list/)
+- ⭐ [Subarray Product Less Than K (713)](https://leetcode.com/problems/subarray-product-less-than-k/)
+
+---
+
+### ◻️ **Optional / Reinforcement**
+
+- ◻️ [4Sum (18)](https://leetcode.com/problems/4sum/)
+- ◻️ [Remove Element (27)](https://leetcode.com/problems/remove-element/)
+- ◻️ [Reverse String (344)](https://leetcode.com/problems/reverse-string/)
+- ◻️ [Valid Triangle Number (611)](https://leetcode.com/problems/valid-triangle-number/)
+- ◻️ [Partition Labels (763)](https://leetcode.com/problems/partition-labels/)
+- ◻️ [Backspace String Compare (844)](https://leetcode.com/problems/backspace-string-compare/)
+
+---
 
 ## 3. **Sliding Window**
 
