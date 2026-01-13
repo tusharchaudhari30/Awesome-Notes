@@ -178,7 +178,7 @@ public class ExceptionHandlingExample {
 
 ## **4. Collections Framework (Complete)**
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/dc02bc8f-be1a-4238-8d11-8a2d66cc4ced/955abade-ef2e-4bea-af54-8ab458ddd881/Untitled.png)
+![Untitled](./Java%20Definitive/image-4.png)
 
 # **Core interfaces**
 
