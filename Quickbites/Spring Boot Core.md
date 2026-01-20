@@ -86,6 +86,26 @@ ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.cl
 MyService service = context.getBean(MyService.class);
 ```
 
+## ApplicationContext vs BeanFactory
+
+Both are IoC containers, but `ApplicationContext` builds on `BeanFactory` and is preferred for almost all applications.
+
+| Feature             | BeanFactory                                 | ApplicationContext                            |
+| ------------------- | ------------------------------------------- | --------------------------------------------- |
+| Primary role        | Basic bean container                        | Full Spring application container             |
+| Bean creation       | Typically lazy (on first request)           | Commonly eager for singletons (at startup)    |
+| Enterprise features | Minimal                                     | Rich: events, i18n, resource loading, etc.    |
+| Best fit            | Very lightweight / constrained environments | Standard apps (Boot, web apps, microservices) |
+
+### Practical differentiators to mention
+
+- `ApplicationContext` supports:
+  - **Application events** (`ApplicationEventPublisher`, listeners)
+  - **Internationalization (i18n)** via `MessageSource`
+  - **Resource loading** (classpath/file/URL resources)
+  - Better integration with Spring features that assume an application context
+- `BeanFactory` is lower-level and mainly relevant for understanding internals or extremely minimal setups.
+
 ### Dependency Injection (DI)
 
 DI is a design pattern where objects receive their dependencies from external sources rather than creating them.
@@ -408,6 +428,28 @@ public class ConditionalConfig {
 ## 5. Bean Scopes & Lifecycle
 
 ### Bean Scopes
+
+Scope defines the lifecycle/visibility of a bean instance within the container.
+
+### Common scopes and when to use
+
+- **singleton (default)**: One instance per Spring container.
+  - Use for stateless services, repositories, configuration components.
+- **prototype**: New instance every time requested from the container.
+  - Use for stateful objects or short-lived helpers.
+  - Important: Spring creates it, injects it, but does **not** manage full lifecycle like singleton (e.g., destruction callbacks aren’t managed the same way).
+- **request (web)**: One instance per HTTP request.
+  - Use for request-specific state (e.g., request metadata).
+- **session (web)**: One instance per HTTP session.
+  - Use for session-specific user state (sparingly in modern stateless APIs).
+
+### Prototype injected into Singleton (classic interview trap)
+
+If a prototype bean is injected into a singleton bean normally, the singleton gets only **one** prototype instance at injection time (not a new one per method call).  
+Common solutions:
+
+- Inject `ObjectFactory<T>` or `Provider<T>` and call `getObject()` / `get()` each time you need a fresh instance.
+- Look up via `ApplicationContext.getBean(...)` (works but is more container-coupled).
 
 #### 1. Singleton (Default)
 
@@ -1538,6 +1580,37 @@ public class ManualTransactionService {
 ---
 
 ## 12. AOP (Aspect-Oriented Programming)
+
+AOP separates **cross-cutting concerns** from business logic by applying “advice” (extra behavior) around method execution without changing the method code.
+
+### Core terms (must-know)
+
+- **Aspect**: A module that contains cross-cutting logic (e.g., `LoggingAspect`, `SecurityAspect`).
+- **Join point**: A point in program execution where an aspect can be applied (in Spring AOP, typically a _method execution_).
+- **Pointcut**: A predicate/expression that selects join points (e.g., “all methods in `com.app.service..*`”).
+- **Advice**: The action taken by an aspect at a join point:
+  - `@Before`: run before method call
+  - `@AfterReturning`: run after successful return
+  - `@AfterThrowing`: run when exception occurs
+  - `@After`: always run at the end (finally-style)
+  - `@Around`: wraps the call; can control whether/when method executes and can modify result/exception
+- **Target**: The actual bean being advised (your service class).
+- **Proxy**: The object Spring injects instead of the target; it intercepts calls and applies advice.
+
+### How it actually works in Spring
+
+- Spring AOP is **proxy-based**, meaning advice runs only when calls go through the Spring-managed proxy.
+- A common gotcha: **self-invocation** (a method inside a class calling another method of the same class) may bypass the proxy, so advice might not trigger.
+- Proxies are typically:
+  - **JDK dynamic proxies** (interface-based)
+  - **CGLIB proxies** (class-based; used when no interface or forced)
+
+### Typical AOP use-cases in interviews
+
+- Logging input/output, execution time monitoring.
+- Security checks (role validation) before service methods.
+- Transactions (`@Transactional`) is effectively an AOP use-case in Spring.
+- Rate limiting, retries, circuit-breakers (often via libraries, still “around-invocation” behavior).
 
 ### Enable AOP
 
