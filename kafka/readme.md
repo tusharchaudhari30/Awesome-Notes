@@ -1,5 +1,9 @@
 # Apache Kafka Awesome Notes
 
+## Table of Contents
+
+- [Index](#index)
+
 ## Index
 
 1. [Foundations and Core Concepts](1.%20Foundations%20and%20Core%20Concepts.md)

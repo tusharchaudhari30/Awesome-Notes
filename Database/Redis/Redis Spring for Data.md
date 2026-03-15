@@ -1,5 +1,48 @@
 # End-to-End Guide: Implementing Redis Caching in Spring Boot
 
+## Table of Contents
+
+- [Overview](#overview)
+- [Prerequisites](#prerequisites)
+- [Step 1: Project Setup](#step-1-project-setup)
+  - [Add Dependencies](#add-dependencies)
+- [Step 2: Redis Server Setup](#step-2-redis-server-setup)
+  - [Option A: Using Docker (Recommended)](#option-a-using-docker-recommended)
+  - [Option B: Local Installation](#option-b-local-installation)
+- [Step 3: Configure Application Properties](#step-3-configure-application-properties)
+- [Step 4: Enable Caching](#step-4-enable-caching)
+- [Step 5: Configure Redis Cache Manager](#step-5-configure-redis-cache-manager)
+  - [Advanced Configuration with Multiple TTL Values](#advanced-configuration-with-multiple-ttl-values)
+- [Step 6: Create Entity Class](#step-6-create-entity-class)
+- [Step 7: Create Repository](#step-7-create-repository)
+- [Step 8: Implement Service Layer with Cache Annotations](#step-8-implement-service-layer-with-cache-annotations)
+  - [Understanding Cache Annotations](#understanding-cache-annotations)
+- [Step 9: Create REST Controller](#step-9-create-rest-controller)
+- [Step 10: Testing the Application](#step-10-testing-the-application)
+  - [Start the Application](#start-the-application)
+  - [Test Cache Operations](#test-cache-operations)
+- [Step 11: Verify Cache in Redis](#step-11-verify-cache-in-redis)
+  - [Using Redis CLI](#using-redis-cli)
+- [Advanced Configurations](#advanced-configurations)
+  - [Custom Serialization with Jackson](#custom-serialization-with-jackson)
+  - [Conditional Caching](#conditional-caching)
+  - [Cache with Multiple Keys](#cache-with-multiple-keys)
+- [Best Practices](#best-practices)
+  - [Choose Appropriate TTL Values](#choose-appropriate-ttl-values)
+  - [Implement Cache Warming](#implement-cache-warming)
+  - [Handle Cache Failures Gracefully](#handle-cache-failures-gracefully)
+  - [Use Appropriate Eviction Policies](#use-appropriate-eviction-policies)
+  - [Monitor Cache Performance](#monitor-cache-performance)
+- [Testing Cache Implementation](#testing-cache-implementation)
+  - [Integration Test with Testcontainers](#integration-test-with-testcontainers)
+- [Troubleshooting](#troubleshooting)
+  - [Common Issues and Solutions](#common-issues-and-solutions)
+- [Production Considerations](#production-considerations)
+  - [Redis Configuration for Production](#redis-configuration-for-production)
+  - [Use Redis Sentinel for High Availability](#use-redis-sentinel-for-high-availability)
+  - [Security Best Practices](#security-best-practices)
+- [Summary](#summary)
+
 ## Overview
 
 Redis caching in Spring Boot significantly improves application performance by reducing database load and response times. This guide walks you through the complete implementation process, from setup to production-ready configuration.

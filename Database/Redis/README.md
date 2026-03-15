@@ -1,5 +1,9 @@
 # Redis Awesome Notes
 
+## Table of Contents
+
+- [Index](#index)
+
 ## Index
 
 1. [Redis Fundamentals and Core Concepts](1.%20Redis%20Fundamentals%20and%20Core%20Concepts.md)

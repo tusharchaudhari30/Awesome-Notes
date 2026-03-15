@@ -1,3 +1,15 @@
+## Table of Contents
+
+- [DSA Notes](#dsa-notes)
+- [Descriptive notes](#descriptive-notes)
+- [⚡ Quickbites Cheat Sheets](#quickbites-cheat-sheets)
+  - [Java](#java)
+  - [Backend & Java Stack](#backend-java-stack)
+  - [Database](#database)
+  - [Frontend](#frontend)
+  - [DevOps & Tools](#devops-tools)
+  - [Design & Architecture](#design-architecture)
+
 ## DSA Notes
 
 - **[ CheckList ](./DSA/Neetcode.md)**

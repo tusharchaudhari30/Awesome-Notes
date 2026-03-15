@@ -1,5 +1,42 @@
 # Complete SQL Master Cheatsheet: Beginner to Advanced
 
+## Table of Contents
+
+- [**Beginner Level**](#beginner-level)
+  - [**1. Database Operations**](#1-database-operations)
+  - [**2. Table Operations**](#2-table-operations)
+  - [**3. Data Manipulation (CRUD)**](#3-data-manipulation-crud)
+  - [**4. Basic Filtering & Sorting**](#4-basic-filtering-sorting)
+  - [**5. Pattern Matching & Ranges**](#5-pattern-matching-ranges)
+- [**Intermediate Level**](#intermediate-level)
+  - [**6. Aggregate Functions**](#6-aggregate-functions)
+  - [**7. String Functions**](#7-string-functions)
+  - [**8. Date Functions**](#8-date-functions)
+  - [**9. CASE Statements**](#9-case-statements)
+  - [**10. Joins**](#10-joins)
+  - [**11. Subqueries**](#11-subqueries)
+  - [**12. Set Operations**](#12-set-operations)
+- [**Advanced Level**](#advanced-level)
+  - [**13. Basic Window Functions**](#13-basic-window-functions)
+  - [**14. Distribution Window Functions**](#14-distribution-window-functions)
+  - [**15. NTH_VALUE and Offset Functions**](#15-nth_value-and-offset-functions)
+  - [**16. Window Frames: ROWS vs RANGE vs GROUPS**](#16-window-frames-rows-vs-range-vs-groups)
+  - [**17. Advanced Window Frames with EXCLUDE**](#17-advanced-window-frames-with-exclude)
+  - [**18. Windowed Aggregates per Group**](#18-windowed-aggregates-per-group)
+  - [**19. Common Table Expressions (CTEs)**](#19-common-table-expressions-ctes)
+  - [**20. Recursive CTEs**](#20-recursive-ctes)
+  - [**21. Advanced Joins & Complex Queries**](#21-advanced-joins-complex-queries)
+  - [**22. Views**](#22-views)
+  - [**23. Indexes**](#23-indexes)
+  - [**24. Stored Procedures**](#24-stored-procedures)
+  - [**25. Functions**](#25-functions)
+  - [**26. Triggers**](#26-triggers)
+  - [**27. Transactions**](#27-transactions)
+  - [**28. Advanced Data Types & JSON**](#28-advanced-data-types-json)
+  - [**29. Performance Optimization**](#29-performance-optimization)
+  - [**30. Advanced Query Techniques**](#30-advanced-query-techniques)
+  - [**31. Database Administration**](#31-database-administration)
+
 ## **Beginner Level**
 
 ### **1. Database Operations**

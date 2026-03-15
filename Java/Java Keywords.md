@@ -1,5 +1,17 @@
 # Java Keywords
 
+## Table of Contents
+
+  - [**Access Modifiers**](#access-modifiers)
+  - [**Class & Object Related**](#class-object-related)
+  - [**Control Flow**](#control-flow)
+  - [**Exception Handling**](#exception-handling)
+  - [**Data Types**](#data-types)
+  - [**Modifiers & Storage**](#modifiers-storage)
+  - [**Literals & Constants**](#literals-constants)
+  - [**Packages & Imports**](#packages-imports)
+  - [**Instance & Inheritance**](#instance-inheritance)
+
 ### **Access Modifiers**
 
 - `public` → Accessible from anywhere.

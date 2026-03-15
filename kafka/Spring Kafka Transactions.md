@@ -1,5 +1,17 @@
 # 10. Spring Kafka Transactions — Cheat Sheet (with commented code)
 
+## Table of Contents
+
+- [10.1 Producer and Consumer Configuration](#101-producer-and-consumer-configuration)
+  - [application.yml](#applicationyml)
+- [10.2 Transaction Manager Bean](#102-transaction-manager-bean)
+- [10.3 Transactional Listener Container](#103-transactional-listener-container)
+- [10.4 Consume–Process–Produce Atomically (Container-managed)](#104-consumeprocessproduce-atomically-container-managed)
+- [10.5 Manual Transaction Control (Advanced)](#105-manual-transaction-control-advanced)
+- [10.6 Error Handling and Retries](#106-error-handling-and-retries)
+- [10.7 Testing EOS](#107-testing-eos)
+- [10.8 Operational Guardrails](#108-operational-guardrails)
+
 Practical, copy-ready snippets to enable exactly-once consume–process–produce pipelines in Spring for Kafka, with inline comments to explain the why and how.
 
 ## 10.1 Producer and Consumer Configuration

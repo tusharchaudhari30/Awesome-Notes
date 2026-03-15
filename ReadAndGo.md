@@ -1,5 +1,31 @@
 # Spring boot kafka
 
+## Table of Contents
+
+- [Kafka Producer](#kafka-producer)
+- [Send methods choice](#send-methods-choice)
+- [acks (all, 1, 0)](#acks-all-1-0)
+- [Exactly once](#exactly-once)
+- [Atleast once](#atleast-once)
+- [Manual commit (at-least-once)](#manual-commit-at-least-once)
+- [Bean Life Cycle](#bean-life-cycle)
+- [Custom Exception Handling](#custom-exception-handling)
+- [AOP](#aop)
+  - [Performance Monitoring Aspect](#performance-monitoring-aspect)
+  - [Web Clients](#web-clients)
+  - [Feign client](#feign-client)
+  - [File Controller](#file-controller)
+  - [Key Annotations](#key-annotations)
+  - [Generation Strategies](#generation-strategies)
+- [Entity Relationships](#entity-relationships)
+  - [Relationship](#relationship)
+  - [Cascade Types](#cascade-types)
+  - [Paging and Sorting](#paging-and-sorting)
+  - [Stored Procedures](#stored-procedures)
+- [Keys and Constraints](#keys-and-constraints)
+  - [CREATE INDEX](#create-index)
+  - [ADD/DROP Column](#adddrop-column)
+
 ## Kafka Producer
 
 ```java

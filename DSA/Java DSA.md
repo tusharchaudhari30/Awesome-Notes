@@ -2,27 +2,30 @@
 
 ## Table of Contents
 
+- [Table of Contents](#table-of-contents)
 - [String Methods](#string-methods)
-- [StringBuilder & StringBuffer](#stringbuilder--stringbuffer)
+- [StringBuilder & StringBuffer](#stringbuilder-stringbuffer)
 - [Array Methods](#array-methods)
 - [ArrayList Methods](#arraylist-methods)
 - [LinkedList Methods](#linkedlist-methods)
-- [HashMap & TreeMap Methods](#hashmap--treemap-methods)
-- [HashSet & TreeSet Methods](#hashset--treeset-methods)
+- [HashMap & TreeMap Methods](#hashmap-treemap-methods)
+- [HashSet & TreeSet Methods](#hashset-treeset-methods)
 - [Stack Methods](#stack-methods)
-- [Queue & Deque Methods](#queue--deque-methods)
+- [Queue & Deque Methods](#queue-deque-methods)
 - [PriorityQueue Methods](#priorityqueue-methods)
 - [Math Class Methods](#math-class-methods)
-- [Integer & Character Methods](#integer--character-methods)
+- [Integer & Character Methods](#integer-character-methods)
 - [Stream API Methods](#stream-api-methods)
-- [Comparator & Comparable](#comparator--comparable)
+- [Comparator & Comparable](#comparator-comparable)
 - [Common DSA Patterns](#common-dsa-patterns)
   - [Two Pointers](#two-pointers)
   - [Sliding Window](#sliding-window)
   - [Backtracking](#backtracking)
   - [Bit Manipulation](#bit-manipulation)
-
----
+- [Common LeetCode Patterns Summary](#common-leetcode-patterns-summary)
+  - [When to Use Each Pattern](#when-to-use-each-pattern)
+- [Time Complexity Cheatsheet](#time-complexity-cheatsheet)
+- [Quick Reference: Common Operations](#quick-reference-common-operations)
 
 ## String Methods
 

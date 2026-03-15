@@ -1,5 +1,9 @@
 # SQL Notes Index
 
+## Table of Contents
+
+- [Images](#images)
+
 - [1. Relational Model & Architecture](1.%20Relational%20Model%20%26%20Architecture.md)
 - [2. SQL Data Definition Language (DDL)](2.%20SQL%20Data%20Definition%20Language%20(%20DDL%20).md)
 - [3. Keys & Integrity Constraints](3.%20Keys%20%26%20Integrity%20Constraints.md)

@@ -2,11 +2,30 @@
 
 ## Table of Contents
 
-1. SOLID Principles
-2. Gang of Four (GoF) Design Patterns
-3. DRY Principle
-
----
+- [Table of Contents](#table-of-contents)
+- [1. SOLID PRINCIPLES](#1-solid-principles)
+  - [1.1 Single Responsibility Principle (SRP)](#11-single-responsibility-principle-srp)
+  - [1.2 Open/Closed Principle (OCP)](#12-openclosed-principle-ocp)
+  - [1.3 Liskov Substitution Principle (LSP)](#13-liskov-substitution-principle-lsp)
+  - [1.4 Interface Segregation Principle (ISP)](#14-interface-segregation-principle-isp)
+  - [1.5 Dependency Inversion Principle (DIP)](#15-dependency-inversion-principle-dip)
+- [2. GANG OF FOUR (GoF) DESIGN PATTERNS](#2-gang-of-four-gof-design-patterns)
+  - [2.1 CREATIONAL PATTERNS](#21-creational-patterns)
+    - [2.1.1 Singleton Pattern](#211-singleton-pattern)
+    - [2.1.2 Factory Pattern](#212-factory-pattern)
+    - [2.1.3 Builder Pattern](#213-builder-pattern)
+  - [2.2 STRUCTURAL PATTERNS](#22-structural-patterns)
+    - [2.2.1 Adapter Pattern](#221-adapter-pattern)
+    - [2.2.2 Decorator Pattern](#222-decorator-pattern)
+  - [2.3 BEHAVIORAL PATTERNS](#23-behavioral-patterns)
+    - [2.3.1 Strategy Pattern](#231-strategy-pattern)
+    - [2.3.2 Observer Pattern](#232-observer-pattern)
+    - [2.3.3 Template Method Pattern](#233-template-method-pattern)
+- [3. DRY PRINCIPLE (Don't Repeat Yourself)](#3-dry-principle-dont-repeat-yourself)
+- [QUICK REFERENCE TABLE](#quick-reference-table)
+  - [GoF Patterns Summary](#gof-patterns-summary)
+  - [SOLID Principles Summary](#solid-principles-summary)
+- [BEST PRACTICES](#best-practices)
 
 ## 1. SOLID PRINCIPLES
 

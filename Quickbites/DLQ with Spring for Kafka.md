@@ -2,6 +2,35 @@
 
 This comprehensive guide will walk you through implementing a Dead Letter Queue (DLQ) for Kafka using Spring Boot, covering everything from project setup to advanced configuration patterns.
 
+## Table of Contents
+
+- [Table of Contents](#table-of-contents)
+- [What is a Dead Letter Queue (DLQ)?](#what-is-a-dead-letter-queue-dlq)
+- [Prerequisites](#prerequisites)
+- [Step 1: Project Setup](#step-1-project-setup)
+  - [1.1 Create Spring Boot Project](#11-create-spring-boot-project)
+  - [1.2 Maven Dependencies](#12-maven-dependencies)
+  - [1.3 Gradle Dependencies](#13-gradle-dependencies)
+- [Step 2: Basic Configuration](#step-2-basic-configuration)
+  - [2.1 Application Properties](#21-application-properties)
+  - [2.2 Topic Configuration](#22-topic-configuration)
+- [Step 3: Create Data Model](#step-3-create-data-model)
+- [Step 4: Configure DLQ Error Handler](#step-4-configure-dlq-error-handler)
+  - [4.1 Error Handler Configuration](#41-error-handler-configuration)
+- [Step 5: Implement Producer](#step-5-implement-producer)
+- [Step 6: Implement Consumer with Validation](#step-6-implement-consumer-with-validation)
+- [Step 7: Implement DLQ Consumer](#step-7-implement-dlq-consumer)
+- [Step 8: Advanced Error Handling Features](#step-8-advanced-error-handling-features)
+  - [8.1 Deserialization Error Handling](#81-deserialization-error-handling)
+  - [8.2 Custom Destination Resolver](#82-custom-destination-resolver)
+- [Step 9: Testing Your DLQ Implementation](#step-9-testing-your-dlq-implementation)
+  - [9.1 REST Controller for Testing](#91-rest-controller-for-testing)
+  - [9.2 Integration Test](#92-integration-test)
+- [Step 10: Monitoring and Best Practices](#step-10-monitoring-and-best-practices)
+  - [10.1 Monitoring Configuration](#101-monitoring-configuration)
+  - [10.2 Best Practices Summary](#102-best-practices-summary)
+- [Running the Application](#running-the-application)
+
 ## What is a Dead Letter Queue (DLQ)?
 
 A Dead Letter Queue is a special Kafka topic that stores messages that fail to be processed successfully. Instead of losing these problematic messages, the system redirects them to the DLQ for further analysis and handling. This pattern ensures your main processing pipeline remains efficient while preserving failed messages for troubleshooting.[1][2]
