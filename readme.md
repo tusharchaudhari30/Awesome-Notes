@@ -2,6 +2,7 @@
 
 - [DSA Notes](#dsa-notes)
 - [Descriptive notes](#descriptive-notes)
+- [Code Tricky Questions](#code-tricky-questions)
 - [⚡ Quickbites Cheat Sheets](#quickbites-cheat-sheets)
   - [Java](#java)
   - [Backend & Java Stack](#backend-java-stack)
@@ -19,9 +20,18 @@
 ## Descriptive notes
 
 - **[Apache Kafka Awesome Notes](./kafka/readme.md)**
+  - **[Spring Kafka Transactions](./kafka/Spring%20Kafka%20Transactions.md)**
+- **[Spring Boot Kafka Quick Reference](./ReadAndGo.md)**
 - **Databases**
   - **[SQL Awesome Notes](./Database/SQL/readme.md)**
-  - **[Redis Awesome Notes](./Database/redis/readme.md)**
+  - **[Redis Awesome Notes](./Database/Redis/README.md)**
+
+## Code Tricky Questions
+
+- **[100 Java Tricky Questions](./Code%20Tricky%20Questions/100-java-tricky-questions.md)**
+- **[100 Spring Boot Tricky Questions](./Code%20Tricky%20Questions/spring-boot-100-questions.md)**
+- **[JavaScript Tricky Questions](./Code%20Tricky%20Questions/js-tricky-questions.md)**
+- **[React Tricky Questions](./Code%20Tricky%20Questions/react-tricky-100.md)**
 
 ## ⚡ Quickbites Cheat Sheets
 
@@ -30,7 +40,13 @@ Concise, interview-focused cheat sheets for rapid revision. Perfect for last-min
 ### Java
 
 - **[Java Brain Map](./Java/Brain%20Map.md)**
-  - **[Fundamentals Programmming Structures](./Java/Java%20Definitive/1.%20Fundamental%20Programming%20Structure.md)**
+- **[Java Keywords](./Java/Java%20Keywords.md)**
+- **Java Version Features**
+  - **[Java 8 Features](./Java/Java%20Version%20Features/java8-features.md)**
+  - **[Java 11 Features](./Java/Java%20Version%20Features/java11-features.md)**
+  - **[Java 17 Features](./Java/Java%20Version%20Features/java17-features.md)**
+- **Java Definitive Guide**
+  - **[Fundamentals Programming Structures](./Java/Java%20Definitive/1.%20Fundamental%20Programming%20Structure.md)**
   - **[OOP Concepts](./Java/Java%20Definitive/2.%20Object%20Oriented%20Programming.md)**
   - **[Lambda Expression](./Java/Java%20Definitive/3.%20Lambda%20Expression.md)**
   - **[Exceptions](./Java/Java%20Definitive/4.%20Exceptions.md)**
@@ -55,18 +71,18 @@ Concise, interview-focused cheat sheets for rapid revision. Perfect for last-min
 
 ### Frontend
 
-- **[React JSX](./Quickbites/reactjsx.md)** - Components, Hooks, State management
-- **[React + TypeScript](./Quickbites/reactts.md)** - Type-safe React development
+- **[React JSX](./Quickbites/React%20using%20JSX.md)** - Components, Hooks, State management
+- **[React + TypeScript](./Quickbites/React%20using%20Typescript.md)** - Type-safe React development
 - **[TypeScript](./Quickbites/Typescript.md)** - Types, Interfaces, Generics, Advanced patterns
 
 ### DevOps & Tools
 
 - **[Docker](./Quickbites/Docker.md)** - Containers, Images, Docker Compose, Best practices
-- **[Git](./Quickbites/git.md)** - Commands, Workflows, Branching strategies
+- **[Git](./Quickbites/Git.md)** - Commands, Workflows, Branching strategies
 
 ### Design & Architecture
 
-- **[Low-Level Design (LLD)](./Quickbites/LLD.md)** - Design patterns, SOLID principles, Code examples
+- **[Low-Level Design (LLD)](./Quickbites/Low%20Level%20Design.md)** - Design patterns, SOLID principles, Code examples
 - **[High-Level Design (HLD)](./Quickbites/HLD.md)** - System design concepts
 
 ---
