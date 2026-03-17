@@ -5,11 +5,11 @@
 - [Code Tricky Questions](#code-tricky-questions)
 - [⚡ Quickbites Cheat Sheets](#quickbites-cheat-sheets)
   - [Java](#java)
-  - [Backend & Java Stack](#backend-java-stack)
+  - [Backend & Java Stack](#backend--java-stack)
   - [Database](#database)
   - [Frontend](#frontend)
-  - [DevOps & Tools](#devops-tools)
-  - [Design & Architecture](#design-architecture)
+  - [DevOps & Tools](#devops--tools)
+  - [Design & Architecture](#design--architecture)
 
 ## DSA Notes
 
