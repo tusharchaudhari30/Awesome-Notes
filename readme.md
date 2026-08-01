@@ -2,6 +2,7 @@
 
 - [DSA Notes](#dsa-notes)
 - [Descriptive notes](#descriptive-notes)
+- [AI & Cloud](#ai--cloud)
 - [Code Tricky Questions](#code-tricky-questions)
 - [⚡ Quickbites Cheat Sheets](#quickbites-cheat-sheets)
   - [Java](#java)
@@ -25,6 +26,11 @@
 - **Databases**
   - **[SQL Awesome Notes](./Database/SQL/readme.md)**
   - **[Redis Awesome Notes](./Database/Redis/README.md)**
+
+## AI & Cloud
+
+- **[Agentic AI — End-to-End Notes](./AI/Agentic%20AI.md)** - Agent loop, tool use, memory, RAG, design patterns, multi-agent systems, MCP, evals, guardrails, production
+- **[AWS Cloud Practitioner (CLF-C02)](./Cloud/AWS%20Cloud%20Practitioner.md)** - All 4 exam domains, key services, pricing, support plans, exam traps
 
 ## Code Tricky Questions
 
