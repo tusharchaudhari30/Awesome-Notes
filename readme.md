@@ -29,8 +29,28 @@
 
 ## AI & Cloud
 
-- **[Agentic AI — End-to-End Notes](./AI/Agentic%20AI.md)** - Agent loop, tool use, memory, RAG, design patterns, multi-agent systems, MCP, evals, guardrails, production
-- **[AWS Cloud Practitioner (CLF-C02)](./Cloud/AWS%20Cloud%20Practitioner.md)** - All 4 exam domains, key services, pricing, support plans, exam traps
+- **[Agentic AI Awesome Notes](./AI/Agentic%20AI/readme.md)**
+  - **[Foundations](./AI/Agentic%20AI/1.%20Foundations.md)**
+  - **[Core Building Blocks](./AI/Agentic%20AI/2.%20Core%20Building%20Blocks.md)**
+  - **[Retrieval Augmented Generation](./AI/Agentic%20AI/3.%20Retrieval%20Augmented%20Generation.md)**
+  - **[Agent Design Patterns](./AI/Agentic%20AI/4.%20Agent%20Design%20Patterns.md)**
+  - **[Multi Agent Systems](./AI/Agentic%20AI/5.%20Multi%20Agent%20Systems.md)**
+  - **[Model Context Protocol](./AI/Agentic%20AI/6.%20Model%20Context%20Protocol.md)**
+  - **[Frameworks and Tooling Landscape](./AI/Agentic%20AI/7.%20Frameworks%20and%20Tooling%20Landscape.md)**
+  - **[Building an Agent End to End](./AI/Agentic%20AI/8.%20Building%20an%20Agent%20End%20to%20End.md)**
+  - **[Evaluation and Observability](./AI/Agentic%20AI/9.%20Evaluation%20and%20Observability.md)**
+  - **[Guardrails Safety and Security](./AI/Agentic%20AI/10.%20Guardrails%20Safety%20and%20Security.md)**
+  - **[Production and Deployment](./AI/Agentic%20AI/11.%20Production%20and%20Deployment.md)**
+  - **[Cost and Latency Optimization](./AI/Agentic%20AI/12.%20Cost%20and%20Latency%20Optimization.md)**
+  - **[Common Failure Modes](./AI/Agentic%20AI/13.%20Common%20Failure%20Modes.md)**
+  - **[Interview Quick Fire QA](./AI/Agentic%20AI/14.%20Interview%20Quick%20Fire%20QA.md)**
+  - **[Glossary](./AI/Agentic%20AI/15.%20Glossary.md)**
+- **[AWS Cloud Practitioner Awesome Notes](./Cloud/AWS%20Cloud%20Practitioner/readme.md)**
+  - **[Cloud Concepts](./Cloud/AWS%20Cloud%20Practitioner/1.%20Cloud%20Concepts.md)**
+  - **[Security and Compliance](./Cloud/AWS%20Cloud%20Practitioner/2.%20Security%20and%20Compliance.md)**
+  - **[Cloud Technology and Services](./Cloud/AWS%20Cloud%20Practitioner/3.%20Cloud%20Technology%20and%20Services.md)**
+  - **[Billing Pricing and Support](./Cloud/AWS%20Cloud%20Practitioner/4.%20Billing%20Pricing%20and%20Support.md)**
+  - **[Exam Traps and Tips](./Cloud/AWS%20Cloud%20Practitioner/5.%20Exam%20Traps%20and%20Tips.md)**
 
 ## Code Tricky Questions
 
