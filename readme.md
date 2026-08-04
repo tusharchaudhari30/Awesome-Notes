@@ -2,6 +2,7 @@
 
 - [DSA Notes](#dsa-notes)
 - [Descriptive notes](#descriptive-notes)
+- [System Design](#system-design)
 - [Rust](#rust)
 - [AI & Cloud](#ai--cloud)
 - [Code Tricky Questions](#code-tricky-questions)
@@ -27,6 +28,37 @@
 - **Databases**
   - **[SQL Awesome Notes](./Database/SQL/readme.md)**
   - **[Redis Awesome Notes](./Database/Redis/README.md)**
+  - **[Database Types Awesome Notes](./Database/Database%20Types/readme.md)**
+    - **[The Database Landscape and How to Choose](./Database/Database%20Types/1.%20The%20Database%20Landscape%20and%20How%20to%20Choose.md)**
+    - **[Relational OLTP Databases](./Database/Database%20Types/2.%20Relational%20OLTP%20Databases.md)**
+    - **[Key-Value Stores](./Database/Database%20Types/3.%20Key-Value%20Stores.md)**
+    - **[Document Databases](./Database/Database%20Types/4.%20Document%20Databases.md)**
+    - **[Wide-Column Stores](./Database/Database%20Types/5.%20Wide-Column%20Stores.md)**
+    - **[Columnar OLAP Databases](./Database/Database%20Types/6.%20Columnar%20OLAP%20Databases.md)**
+    - **[Graph Databases](./Database/Database%20Types/7.%20Graph%20Databases.md)**
+    - **[Time-Series Databases](./Database/Database%20Types/8.%20Time-Series%20Databases.md)**
+    - **[Search Engine Databases](./Database/Database%20Types/9.%20Search%20Engine%20Databases.md)**
+    - **[Vector Databases](./Database/Database%20Types/10.%20Vector%20Databases.md)**
+    - **[NewSQL and Distributed SQL](./Database/Database%20Types/11.%20NewSQL%20and%20Distributed%20SQL.md)**
+    - **[Choosing a Database Comparison Cheat Sheet](./Database/Database%20Types/12.%20Choosing%20a%20Database%20Comparison%20Cheat%20Sheet.md)**
+
+## System Design
+
+- **[System Design Awesome Notes](./System%20Design/readme.md)** — motivated by *Designing Data-Intensive Applications*
+  - **[Foundations Reliability Scalability Maintainability](./System%20Design/1.%20Foundations%20Reliability%20Scalability%20Maintainability.md)**
+  - **[Data Models and Query Languages](./System%20Design/2.%20Data%20Models%20and%20Query%20Languages.md)**
+  - **[Storage and Retrieval](./System%20Design/3.%20Storage%20and%20Retrieval.md)**
+  - **[Encoding Evolution and Data Flow](./System%20Design/4.%20Encoding%20Evolution%20and%20Data%20Flow.md)**
+  - **[Replication](./System%20Design/5.%20Replication.md)**
+  - **[Partitioning and Sharding](./System%20Design/6.%20Partitioning%20and%20Sharding.md)**
+  - **[Transactions](./System%20Design/7.%20Transactions.md)**
+  - **[The Trouble with Distributed Systems](./System%20Design/8.%20The%20Trouble%20with%20Distributed%20Systems.md)**
+  - **[Consistency and Consensus](./System%20Design/9.%20Consistency%20and%20Consensus.md)**
+  - **[Batch Processing](./System%20Design/10.%20Batch%20Processing.md)**
+  - **[Stream Processing and Event Driven Architecture](./System%20Design/11.%20Stream%20Processing%20and%20Event%20Driven%20Architecture.md)**
+  - **[Caching Load Balancing and CDNs](./System%20Design/12.%20Caching%20Load%20Balancing%20and%20CDNs.md)**
+  - **[Scalable System Building Blocks](./System%20Design/13.%20Scalable%20System%20Building%20Blocks.md)**
+  - **[System Design Interview Playbook](./System%20Design/14.%20System%20Design%20Interview%20Playbook.md)**
 
 ## Rust
 
