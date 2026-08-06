@@ -58,6 +58,7 @@
   - **[Caching Load Balancing and CDNs](./System%20Design/12.%20Caching%20Load%20Balancing%20and%20CDNs.md)**
   - **[Scalable System Building Blocks](./System%20Design/13.%20Scalable%20System%20Building%20Blocks.md)**
   - **[System Design Interview Playbook](./System%20Design/14.%20System%20Design%20Interview%20Playbook.md)**
+  - **[Top 20 System Design Interview Questions](./System%20Design/Top%2020%20System%20Design%20Interview%20Questions/readme.md)** — 20 fully worked "design X" questions with Mermaid diagrams (URL shortener, rate limiter, chat app, news feed, ride-sharing, payment system, collaborative editor, and more)
 
 ## AI & Cloud
 

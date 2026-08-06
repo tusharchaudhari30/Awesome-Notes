@@ -22,3 +22,7 @@
 12. [Caching Load Balancing and CDNs](12.%20Caching%20Load%20Balancing%20and%20CDNs.md) — Caching patterns, stampede/penetration/avalanche, L4/L7 balancing, CDN strategy
 13. [Scalable System Building Blocks](13.%20Scalable%20System%20Building%20Blocks.md) — API gateways, rate limiting, ID generation, task queues, fan-out, blob storage, observability
 14. [System Design Interview Playbook](14.%20System%20Design%20Interview%20Playbook.md) — 5-step framework, back-of-envelope numbers, worked designs (URL shortener, chat system)
+
+## Companion
+
+- **[Top 20 System Design Interview Questions](Top%2020%20System%20Design%20Interview%20Questions/readme.md)** — 20 fully worked "design X" questions (URL shortener, rate limiter, chat app, news feed, ride-sharing, payment system, collaborative editor, and more), each with requirements, estimation, a Mermaid architecture diagram, and a deep dive into the hard part.
