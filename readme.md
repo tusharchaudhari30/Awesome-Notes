@@ -3,6 +3,7 @@
 - [DSA Notes](#dsa-notes)
 - [Descriptive notes](#descriptive-notes)
 - [System Design](#system-design)
+- [Rust](#rust)
 - [AI & Cloud](#ai--cloud)
 - [Code Tricky Questions](#code-tricky-questions)
 - [⚡ Quickbites Cheat Sheets](#quickbites-cheat-sheets)
@@ -58,6 +59,27 @@
   - **[Caching Load Balancing and CDNs](./System%20Design/12.%20Caching%20Load%20Balancing%20and%20CDNs.md)**
   - **[Scalable System Building Blocks](./System%20Design/13.%20Scalable%20System%20Building%20Blocks.md)**
   - **[System Design Interview Playbook](./System%20Design/14.%20System%20Design%20Interview%20Playbook.md)**
+
+## Rust
+
+- **[Rust Awesome Notes](./Rust/readme.md)**
+  - **[Getting Started and Toolchain](./Rust/1.%20Getting%20Started%20and%20Toolchain.md)**
+  - **[Language Fundamentals](./Rust/2.%20Language%20Fundamentals.md)**
+  - **[Ownership and Borrowing](./Rust/3.%20Ownership%20and%20Borrowing.md)**
+  - **[Structs Enums and Pattern Matching](./Rust/4.%20Structs%20Enums%20and%20Pattern%20Matching.md)**
+  - **[Collections and Strings](./Rust/5.%20Collections%20and%20Strings.md)**
+  - **[Error Handling](./Rust/6.%20Error%20Handling.md)**
+  - **[Generics Traits and Lifetimes](./Rust/7.%20Generics%20Traits%20and%20Lifetimes.md)**
+  - **[Modules Crates and Workspaces](./Rust/8.%20Modules%20Crates%20and%20Workspaces.md)**
+  - **[Closures and Iterators](./Rust/9.%20Closures%20and%20Iterators.md)**
+  - **[Smart Pointers and Interior Mutability](./Rust/10.%20Smart%20Pointers%20and%20Interior%20Mutability.md)**
+  - **[Concurrency and Parallelism](./Rust/11.%20Concurrency%20and%20Parallelism.md)**
+  - **[Async Programming](./Rust/12.%20Async%20Programming.md)**
+  - **[Testing and Tooling](./Rust/13.%20Testing%20and%20Tooling.md)**
+  - **[Unsafe Rust Macros and FFI](./Rust/14.%20Unsafe%20Rust%20Macros%20and%20FFI.md)**
+  - **[Idioms Patterns and Performance](./Rust/15.%20Idioms%20Patterns%20and%20Performance.md)**
+  - **[Interview Quick Fire QA](./Rust/16.%20Interview%20Quick%20Fire%20QA.md)**
+  - **[Glossary](./Rust/17.%20Glossary.md)**
 
 ## AI & Cloud
 
